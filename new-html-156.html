@@ -621,8 +621,36 @@
 
       .container { padding: 0 35px; }
       section { padding: 60px 0; }
-      .hero h1 { font-size: 2.2rem; white-space: normal; }
-      .hero p { font-size: 1rem; }
+
+      /* --- 修改手機版 Hero 樣式 (針對您的需求) --- */
+      .hero {
+        align-items: flex-start; /* 1. 讓內容往上對齊 */
+        padding-top: 140px; /* 預留 Header 高度 + 一點空間 */
+        height: auto; /* 不強迫全螢幕高度，避免內容被切掉 */
+        min-height: 80vh;
+      }
+
+      .hero-content {
+        padding-top: 0; /* 移除原本的 padding-top 100px */
+      }
+      
+      .hero h1 { 
+        font-size: 2.8rem; /* 2. 字體加大 */
+        white-space: normal; 
+        font-weight: 800; /* 加粗 */
+        text-shadow: 0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6); /* 3. 增加明顯的文字發光/陰影效果 */
+        line-height: 1.3;
+      }
+      
+      .hero p { 
+        font-size: 1.35rem; /* 4. 副標題字型加大 */
+        font-weight: 500;
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.9); /* 增加對比度 */
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+      /* ------------------------------------------- */
+
       .cta-button { padding: 12px 25px; font-size: 0.9rem; }
       .section-title { font-size: 1.6rem; padding: 12px 20px; margin-bottom: 40px; }
 
@@ -643,23 +671,15 @@
       .step { padding: 15px; margin-bottom: 40px; }
       .step strong { font-size: 1rem; }
       .step-detail { font-size: 0.9rem; line-height: 1.6; }
+    }
 
-      /* --- 修正手機版文字上移 (對齊創新國際下方) --- */
-      .hero {
-          /* 取消原本的置中，改為靠上對齊 */
-          align-items: flex-start;
-          /* 設定距離頂部的空間，讓文字剛好在 Header 下方 (110px) */
-          padding-top: 110px;
-          
-          background-size: contain !important;
-          background-repeat: no-repeat !important;
-          background-position: center center !important;
-      }
-      
-      .hero-content {
-          /* 移除原本的額外 padding */
-          padding-top: 0;
-      }
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+        .hero {
+            background-size: cover !important; 
+            background-repeat: no-repeat !important;
+            background-position: center top !important; /* 確保背景圖片也跟著置頂 */
+        }
     }
   
     /* --- Video Background --- */
