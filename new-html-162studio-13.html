@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>創新國際管理顧問有限公司 - 專業食安輔導與工廠設立專家</title>
+  <meta name="description" content="融合20年在地經驗，創新國際提供從廠房規劃、法規諮詢到工廠登記的一站式專業服務，是您實現食品安全藍圖的最強後盾。">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- 變數與基礎設定 --- */
+    :root {
+      --dark-blue: #0D2F4F;
+      --primary-blue: #1A5A96;
+      --light-blue: rgba(234, 244, 255, 0.6); /* 更加通透 */
+      --accent-gold: #D4AF37;
+      --light-gray: #f8f9fa;
+      --white: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+      --text-color: #343a40;
+      --text-light: #555;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --techy-glow: rgba(26, 90, 150, 0.6);
+      --header-height: 110px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+      /* 背景色設為透明，讓 video 顯現 */
+      background-color: transparent; 
+      color: var(--text-color);
+      line-height: 1.8;
+      font-size: 17px;
+      overflow-x: hidden; /* 防止斜切背景造成的橫向捲軸 */
+    }
+
+    /* --- Video Background (保留不變) --- */
+    .body-background-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+        filter: blur(4px) brightness(0.9);
+        transform: scale(1.05);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- 通用 Section 設定 (加入斜切與科技感) --- */
+    section {
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+
+    /* 透過偽元素製作斜切背景，打破水平線 */
+    section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: skewY(-3deg);
+        transform-origin: top left;
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    /* 為了讓內容不被背景斜切影響，內容層級要拉高 */
+    section > .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* 背景配色策略 - 使用 Glassmorphism */
+    #features::before { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); top: -100px; height: 120%;}
+    #law::before { background: linear-gradient(135deg, rgba(26, 90, 150, 0.05), rgba(13, 47, 79, 0.1)); top: 0; }
+    #audit::before { background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.95)); top: -50px; height: 110%; }
+    #guide::before { background: linear-gradient(120deg, rgba(234, 244, 255, 0.8), rgba(255,255,255,0.5)); transform: skewY(3deg); }
+    #process::before { background: rgba(255,255,255,0.9); transform: none; /* 流程圖保持平整 */ }
+    #case::before { background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(240,240,240,0.95)); transform: skewY(-2deg); }
+    #contact::before { background: rgba(13, 47, 79, 0.9); transform: none; }
+
+    .section-title {
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--dark-blue);
+        text-align: center;
+        margin: 0 auto 100px auto;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        /* 移除原本的框框，改用更有設計感的標題 */
+        background: transparent;
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        animation: none;
+    }
+    
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 6px;
+        background: var(--accent-gold);
+        margin: 20px auto 0;
+        border-radius: 3px;
+    }
+    
+    /* 深色背景區塊的標題 */
+    #contact .section-title { color: var(--white); }
+
+    /* --- Header (保留不變) --- */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      background-color: transparent;
+      box-shadow: none;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.4s, box-shadow 0.4s;
+    }
+
+    .site-header.scrolled {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px var(--shadow-color);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      padding: 0 30px;
+    }
+
+    .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-h1 {
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        margin: 5px 0 0 0;
+        line-height: 1.3;
+        display: none;
+    }
+    .site-header:not(.scrolled) .header-h1 { display: block; }
+
+    .logo a {
+      text-decoration: none;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark-blue);
+      transition: color 0.3s;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .site-header:not(.scrolled) .logo a { color: var(--white); }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: var(--primary-blue);
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s;
+    }
+    .site-header:not(.scrolled) .main-nav a {
+        color: var(--white);
+        text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    }
+
+    .main-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+      transition: width 0.4s;
+    }
+
+    .main-nav a:hover, .main-nav a.active { color: var(--dark-blue); }
+    .site-header:not(.scrolled) .main-nav a:hover,
+    .site-header:not(.scrolled) .main-nav a.active { color: var(--accent-gold); }
+    .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+    .hamburger-menu { display: none; z-index: 1001; }
+
+    /* --- Hero Section (保留不變) --- */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+      background: url('IMAG7662-08短髮.png') no-repeat center center/cover;
+      background-attachment: fixed;
+      position: relative;
+      padding-top: var(--header-height);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to top, rgba(13, 44, 79, 0.5), rgba(13, 44, 79, 0.2));
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding-bottom: 8vh;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      max-width: 650px;
+      margin: 0 auto 40px;
+      opacity: 0.95;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 18px 45px;
+      background: linear-gradient(45deg, var(--accent-gold), #f0c040);
+      color: var(--dark-blue) !important;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+    .cta-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    }
+    .main-nav .cta-button { padding: 10px 25px; font-size: 1rem; box-shadow: none; }
+
+    /* --- Features: 懸浮科技面板 --- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      text-align: left;
+    }
+    .feature-item {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(15px);
+        padding: 40px 30px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 20px 0 20px 0; /* 不對稱圓角 */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+    }
+    .feature-item:hover {
+        transform: translateY(-10px) scale(1.02);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 15px 40px rgba(26, 90, 150, 0.15);
+        border-color: var(--accent-gold);
+    }
+    .feature-item::after {
+        content: '';
+        position: absolute;
+        bottom: 0; right: 0;
+        width: 50px; height: 50px;
+        background: linear-gradient(135deg, transparent 50%, var(--primary-blue) 50%);
+        opacity: 0.1;
+        transition: 0.3s;
+    }
+    .feature-item:hover::after { opacity: 0.3; }
+    
+    .feature-item .icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: var(--primary-blue);
+        display: block;
+    }
+    .feature-item h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--dark-blue);
+    }
+    .feature-item p { color: var(--text-light); }
+
+
+    /* --- Law: 錯落式網格 (Broken Grid / Masonry Feel) --- */
+    /* 打破對齊，讓第二列偏移 */
+    .broken-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+    }
+    .broken-column {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    }
+    /* 讓右邊那行往下掉一點，製造錯落感 */
+    .broken-column:last-child {
+        margin-top: 80px; 
+    }
+
+    .law-card {
+        background: var(--glass-bg);
+        border: var(--glass-border);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: 0.4s;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+    }
+    .law-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    .law-card-img {
+        height: 220px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        /* 斜切圖片底部 */
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+    .law-card-img img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform 0.6s;
+    }
+    .law-card:hover .law-card-img img { transform: scale(1.1); }
+    .law-content { padding: 25px; position: relative; }
+    .law-tag {
+        position: absolute;
+        top: -40px;
+        right: 20px;
+        background: var(--accent-gold);
+        color: var(--dark-blue);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.85rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .law-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; color: var(--dark-blue);}
+
+
+    /* --- Audit: 科技時間軸 / 連接線風格 --- */
+    .audit-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        position: relative;
+    }
+    /* 連接線 */
+    .audit-container::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 10%; right: 10%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+        z-index: 0;
+        display: none; /* Mobile hidden */
+    }
+    @media(min-width: 992px) { .audit-container::before { display: block; } }
+
+    .audit-item {
+        flex: 1 1 280px;
+        max-width: 350px;
+        background: #fff;
+        border-radius: 15px;
+        padding: 30px 20px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        border-top: 5px solid var(--primary-blue);
+        transition: 0.3s;
+    }
+    .audit-item:hover {
+        transform: translateY(-10px);
+        border-top-color: var(--accent-gold);
+    }
+    /* 圓形圖片 */
+    .audit-img-wrapper {
+        width: 100px; height: 100px;
+        margin: -60px auto 20px;
+        border-radius: 50%;
+        background: #fff;
+        padding: 5px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        position: relative;
+    }
+    .audit-img-wrapper img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .audit-item:nth-child(even) { margin-top: 50px; } /* 上下交錯 */
+
+
+    /* --- Guide: 蜂巢/幾何拼貼 --- */
+    .guide-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    .guide-card {
+        position: relative;
+        height: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        /* 讓文字預設隱藏，hover時出現 */
+    }
+    .guide-bg {
+        width: 100%; height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.6s;
+    }
+    .guide-overlay {
+        position: absolute;
+        bottom: 0; left: 0; width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(13, 47, 79, 0.9), transparent);
+        color: white;
+        transform: translateY(30px);
+        transition: 0.4s;
+    }
+    .guide-card:hover .guide-bg { transform: scale(1.1); }
+    .guide-card:hover .guide-overlay { transform: translateY(0); }
+    .guide-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
+    .guide-desc { font-size: 0.9rem; opacity: 0.9; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
+
+
+    /* --- Process: S-Curve (保留 SVG 但美化容器) --- */
+    .process-layout {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 60px;
+        align-items: flex-start;
+    }
+    .canvasbox {
+        flex: 1 1 400px;
+        /* 移除白色背景，讓它看起來像浮在空中 */
+        background: rgba(255,255,255,0.4);
+        border: 1px solid rgba(255,255,255,0.6);
+        backdrop-filter: blur(5px);
+        border-radius: 30px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    }
+    .steps-container { flex: 1 1 500px; }
+    .step {
+        margin-bottom: 30px;
+        padding: 25px;
+        /* 科技感面板風格 */
+        background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0.8));
+        border-radius: 4px;
+        border-left: 4px solid var(--primary-blue);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        position: relative;
+        transition: 0.3s;
+    }
+    .step:hover {
+        transform: translateX(10px);
+        border-left-color: var(--accent-gold);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .step strong { display: block; color: var(--dark-blue); font-size: 1.2rem; margin-bottom: 5px;}
+
+
+    /* --- Case: 雜誌排版 (Big 4 Style: Z-Pattern) --- */
+    .magazine-row {
+        display: flex;
+        align-items: stretch;
+        margin-bottom: 60px;
+        background: #fff;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        border-radius: 0; /* 銳利邊角或微圓角 */
+        overflow: hidden;
+    }
+    /* 偶數項反轉方向 */
+    .magazine-row:nth-child(even) { flex-direction: row-reverse; }
+
+    .magazine-img-box {
+        flex: 1;
+        min-height: 350px;
+        position: relative;
+        overflow: hidden;
+    }
+    /* 圖片斜切效果 */
+    .magazine-row:nth-child(odd) .magazine-img-box { clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); }
+    .magazine-row:nth-child(even) .magazine-img-box { clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%); }
+
+    /* 如果在手機版取消斜切 */
+    @media (max-width: 768px) {
+        .magazine-row:nth-child(odd) .magazine-img-box,
+        .magazine-row:nth-child(even) .magazine-img-box { clip-path: none; }
+    }
+
+    .magazine-img-box img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform 0.7s;
+    }
+    .magazine-row:hover .magazine-img-box img { transform: scale(1.05); }
+
+    .magazine-content {
+        flex: 1;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #fff;
+        z-index: 1;
+    }
+    .magazine-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-blue);
+        margin-bottom: 20px;
+    }
+    .magazine-date {
+        font-size: 0.9rem;
+        color: var(--accent-gold);
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+    .magazine-desc {
+        color: var(--text-light);
+        font-size: 1.05rem;
+        margin-bottom: 25px;
+    }
+    .read-more-btn {
+        align-self: flex-start;
+        border: 2px solid var(--primary-blue);
+        color: var(--primary-blue);
+        padding: 10px 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+    .read-more-btn:hover {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+
+    /* --- Contact (大膽深色) --- */
+    #contact {
+        background-color: var(--dark-blue) !important;
+        color: white;
+        text-align: center;
+        /* 移除斜切 */
+    }
+    #contact::before { display: none; }
+    .contact-subtitle {
+        color: rgba(255,255,255,0.7);
+        max-width: 600px;
+        margin: 0 auto 40px;
+        font-size: 1.2rem;
+    }
+
+
+    /* --- RWD --- */
+    @media (max-width: 992px) {
+        .features-grid { grid-template-columns: repeat(2, 1fr); }
+        .section-title { font-size: 2.5rem; }
+    }
+
+    @media (max-width: 768px) {
+        .main-nav {
+            position: fixed; top: 0; right: 0; width: 80%; height: 100vh;
+            background: var(--dark-blue); flex-direction: column;
+            transform: translateX(100%); transition: 0.4s; padding-top: 100px;
+        }
+        .main-nav.is-open { transform: translateX(0); }
+        .hamburger-menu { display: block; width: 30px; height: 24px; position: relative; cursor: pointer; }
+        .hamburger-menu span { display: block; width: 100%; height: 3px; background: var(--primary-blue); margin-bottom: 5px; transition:0.3s;}
+        .site-header:not(.scrolled) .hamburger-menu span { background: white; }
+        
+        .features-grid { grid-template-columns: 1fr; }
+        .broken-grid { grid-template-columns: 1fr; gap: 30px; }
+        .broken-column { gap: 30px; margin-top: 0 !important; }
+        
+        .magazine-row { flex-direction: column !important; }
+        .magazine-img-box { height: 250px; clip-path: none; }
+        
+        .section-title { font-size: 2rem; margin-bottom: 50px; }
+        
+        /* 手機版 Hero */
+        .hero { background-size: cover !important; background-attachment: scroll !important; }
+        .body-background-video { display: none; } /* 手機版通常不自動播影片省電，或保留看需求 */
+    }
+    
+    /* 動畫 */
+    .fade-in-up { opacity: 0; transform: translateY(40px); transition: 0.8s; }
+    .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
+    
+    /* Modal (保留功能) */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8); z-index: 2000;
+      opacity: 0; visibility: hidden; transition: 0.4s;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .modal-overlay.is-visible { opacity: 1; visibility: visible; }
+    .modal-container {
+      background: white; width: 90%; max-width: 800px; max-height: 90vh;
+      overflow-y: auto; padding: 40px; position: relative; border-radius: 10px;
+    }
+    .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; border: none; background: none; cursor: pointer;}
+    .modal-img { width: 100%; max-height: 400px; object-fit: contain; margin-bottom: 20px;}
+    .modal-title { color: var(--dark-blue); margin-bottom: 10px; font-size: 1.8rem;}
+
+  </style>
+</head>
+<body>
+  
+  <video autoplay loop muted playsinline class="body-background-video">
+    <source src="根據圖片生成食品工廠影片.mp4" type="video/mp4">
+  </video>
+
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <div class="logo"><a href="#home">創新國際</a></div>
+        <h1 class="header-h1">食安領航，<br>從工廠登記做起</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="#home">首頁</a>
+        <a href="#features">核心服務</a>
+        <a href="#law">最新法規</a>
+        <a href="#audit">查核重點</a>
+        <a href="#guide">廠房規劃</a>
+        <a href="#process">申請流程</a>
+        <a href="#case">案例分享</a>
+        <a href="#contact" class="cta-button">諮詢服務</a>
+      </nav>
+      <div class="hamburger-menu"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content fade-in-up">
+        <p>融合20年在地經驗，我們將繁瑣流程化為您的成功基石。從選址到營運，全程專業陪伴。</p>
+        <a href="#features" class="cta-button">了解我們的服務</a>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <h2 class="section-title fade-in-up">一站式整合服務</h2>
+        <div class="features-grid">
+          <div class="feature-item fade-in-up">
+            <span class="icon">🏢</span>
+            <h3>廠房規劃與設計</h3>
+            <p>依據製程需求與法規，打造最高效、合規的生產動線與空間配置。結合現代化3D模擬技術。</p>
+          </div>
+          <div class="feature-item fade-in-up" style="transition-delay: 0.2s;">
+            <span class="icon">📜</span>
+            <h3>法規諮詢與代辦</h3>
+            <p>精準掌握最新食安法規，處理繁瑣的工廠登記與文件申請，確保零失誤、高效率。</p>
+          </div>
+          <div class="feature-item fade-in-up" style="transition-delay: 0.4s;">
+            <span class="icon">🤝</span>
+            <h3>在地溝通協調</h3>
+            <p>憑藉多年經驗，有效與主管機關溝通，確保會勘審查順利通過，減少來回補件時間。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="law">
+      <div class="container">
+        <h2 class="section-title fade-in-up">最新法規動態</h2>
+        <div class="broken-grid">
+            <div class="broken-column">
+                <div class="law-card fade-in-up" data-id="law-1">
+                    <div class="law-card-img"><img src="AI工廠102.png" alt="法規"></div>
+                    <div class="law-content">
+                        <span class="law-tag">焦點</span>
+                        <div class="law-title">自行製造販售食品規範</div>
+                        <p>從事食品加工製造及販售，應以符合食安法及GHP準則為前提...</p>
+                    </div>
+                </div>
+                <div class="law-card fade-in-up" data-id="law-3">
+                    <div class="law-card-img"><img src="IMG_20250805_142051.jpg" alt="法規"></div>
+                    <div class="law-content">
+                        <div class="law-title">作業區門禁管理</div>
+                        <p>各作業區的門需隨時關閉且密合度需良好，避免交叉污染...</p>
+                    </div>
+                </div>
+                <div class="law-card fade-in-up" data-id="law-5">
+                    <div class="law-card-img"><img src="IMG_20250901_151144-02.jpg" alt="法規"></div>
+                    <div class="law-content">
+                         <div class="law-title">成品留樣保存規定</div>
+                        <p>應訂定有效日期，並將產品留樣保存至有效日期...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="broken-column">
+                 <div class="law-card fade-in-up" data-id="law-2">
+                    <div class="law-card-img"><img src="IMG_20250901_154419.jpg" alt="法規"></div>
+                    <div class="law-content">
+                         <div class="law-title">分裝與改包裝之定性</div>
+                        <p>若分裝製程足以影響產品衛生安全，認屬為食品製造業...</p>
+                    </div>
+                </div>
+                <div class="law-card fade-in-up" data-id="law-4">
+                    <div class="law-card-img"><img src="IMG_20250904_134214-02.png" alt="法規"></div>
+                    <div class="law-content">
+                         <div class="law-title">原料倉儲溫度管制</div>
+                        <p>有管制溫溼度必要者，應訂定合理基準並定期檢查...</p>
+                    </div>
+                </div>
+                <div class="law-card fade-in-up" data-id="law-6">
+                    <div class="law-card-img"><img src="IMG_20250901_151152-02.jpg" alt="法規"></div>
+                    <div class="law-content">
+                        <div class="law-title">留樣室設置規範</div>
+                        <p>法規雖未硬性規定，但應設置適當環境以確保樣品品質...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="audit">
+        <div class="container">
+            <h2 class="section-title fade-in-up">關鍵查核點</h2>
+            <div class="audit-container">
+                <div class="audit-item fade-in-up" data-id="audit-0">
+                    <div class="audit-img-wrapper"><img src="j20250312112736_o.jpg" alt="程序書"></div>
+                    <h4>九大程序書</h4>
+                    <p>衛生、製程、倉儲等管理程序書之建立與執行。</p>
+                </div>
+                <div class="audit-item fade-in-up" data-id="audit-1">
+                    <div class="audit-img-wrapper"><img src="IMG_20250415_173637.jpg" alt="登記"></div>
+                    <h4>合法登記</h4>
+                    <p>工廠登記證及食品業者登錄資料需與現況一致。</p>
+                </div>
+                <div class="audit-item fade-in-up" data-id="audit-3">
+                    <div class="audit-img-wrapper"><img src="IMG_20250224_152330.jpg" alt="環境"></div>
+                    <h4>環境衛生</h4>
+                    <p>落實分區管理、防鼠蚊設施及定時清潔消毒。</p>
+                </div>
+                 <div class="audit-item fade-in-up" data-id="audit-4">
+                    <div class="audit-img-wrapper"><img src="IMG_20250904_143025.jpg" alt="追溯"></div>
+                    <h4>追溯追蹤</h4>
+                    <p>建立從原料到成品出貨的完整履歷紀錄。</p>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:50px;">
+                <p style="color:#666; margin-bottom:20px;">*點擊卡片查看詳細說明與更多項目</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="guide">
+        <div class="container">
+            <h2 class="section-title fade-in-up">廠房規劃指南</h2>
+            <div class="guide-grid">
+                <div class="guide-card fade-in-up" data-id="guide-1">
+                    <div class="guide-bg" style="background-image: url('IMG_20250805_142041.jpg');"></div>
+                    <div class="guide-overlay">
+                        <div class="guide-title">動線規劃實例</div>
+                        <div class="guide-desc">原料進廠到出貨全程分流，降低污染風險。</div>
+                    </div>
+                </div>
+                <div class="guide-card fade-in-up" data-id="guide-2">
+                    <div class="guide-bg" style="background-image: url('IMG_20250805_135404.jpg');"></div>
+                    <div class="guide-overlay">
+                        <div class="guide-title">隔間材質選擇</div>
+                        <div class="guide-desc">庫板、不鏽鋼、磚牆優缺點分析。</div>
+                    </div>
+                </div>
+                <div class="guide-card fade-in-up" data-id="guide-4">
+                    <div class="guide-bg" style="background-image: url('四川华盛興邦净化-102AI.jpeg');"></div>
+                    <div class="guide-overlay">
+                        <div class="guide-title">節能環保設計</div>
+                        <div class="guide-desc">LED照明、高效空調與太陽能應用。</div>
+                    </div>
+                </div>
+                <div class="guide-card fade-in-up" data-id="guide-5">
+                    <div class="guide-bg" style="background-image: url('IMG_20250805_142321.jpg');"></div>
+                    <div class="guide-overlay">
+                        <div class="guide-title">地坪工程建議</div>
+                        <div class="guide-desc">Epoxy與PU材質依作業區需求選擇。</div>
+                    </div>
+                </div>
+                <div class="guide-card fade-in-up" data-id="guide-6">
+                    <div class="guide-bg" style="background-image: url('IMG_20250904_134653.jpg');"></div>
+                    <div class="guide-overlay">
+                        <div class="guide-title">空調與正負壓</div>
+                        <div class="guide-desc">潔淨區正壓設計，防止交叉污染。</div>
+                    </div>
+                </div>
+                 <div class="guide-card fade-in-up" data-id="guide-8">
+                    <div class="guide-bg" style="background-image: url('AI工廠106xxx-02.jpg');"></div>
+                    <div class="guide-overlay">
+                        <div class="guide-title">廢水處理規劃</div>
+                        <div class="guide-desc">依產能規劃處理槽，符合環保排放標準。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <h2 class="section-title fade-in-up">工廠設立藍圖</h2>
+        <div class="process-layout fade-in-up">
+            <div class="canvasbox">
+                <svg height="1720" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 1720">
+                    <rect x="0" y="0" width="410" height="1720" fill="transparent" />
+                    <g class="svgblock"><rect x="15" y="30" rx="18" ry="18" width="380" height="90" fill="#E6F8EF" stroke="#429193" stroke-width="2"/><text x="205" y="60" class="svglabel" text-anchor="middle">1. 用地查核</text><foreignObject x="20" y="75" width="370" height="50"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">工業/產業用地都計分區證明</p><p style="font-size:13px; color:#779A8F; font-family:Arial; margin:0; text-align:center; word-wrap:break-word;">查政府工業區/都市計畫科、地號選擇</p></body></foreignObject></g>
+                    <line x1="205" y1="120" x2="205" y2="172" stroke="#61A2A3" stroke-width="2" marker-end="url(#arrow)"/>
+                    <g class="svgblock"><rect x="15" y="180" rx="18" ry="18" width="380" height="90" fill="#DDF4FA" stroke="#1977d1" stroke-width="2"/><text x="205" y="210" class="svglabel" text-anchor="middle">2. 都計審查許可</text><foreignObject x="20" y="225" width="370" height="50"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">分區證明、建設用途確認</p></body></foreignObject></g>
+                     <line x1="205" y1="270" x2="205" y2="322" stroke="#1977d1" stroke-width="2" marker-end="url(#arrow)"/>
+                    <g class="svgblock"><rect x="15" y="330" rx="18" ry="18" width="380" height="90" fill="#FEF2DE" stroke="#d89a2c" stroke-width="2"/><text x="205" y="360" class="svglabel" text-anchor="middle">3. 成立公司或商號登記</text><foreignObject x="20" y="375" width="370" height="50"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">取得統編，完成登記章程</p></body></foreignObject></g>
+                    </svg>
+            </div>
+            <div class="steps-container">
+                <div class="step"><strong>1. 用地查核</strong>查核土地是否工業/產業用地，並確認地號與分區。</div>
+                <div class="step"><strong>2. 都市計畫審查許可</strong>申請土地分區證明及使用性相關審查，避免日後違法。</div>
+                <div class="step"><strong>3. 成立公司或商號登記</strong>依實際營運型態完成辦理，取得營業統編。</div>
+                <div class="step"><strong>4. 工廠空間規劃設計</strong>產線動線、結構安全、消防動線。</div>
+                <div class="step"><strong>5. 申請建照與使用執照</strong>建照須經官方審核，確保建物用途合格。</div>
+                </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="case">
+        <div class="container">
+            <h2 class="section-title fade-in-up">成功案例</h2>
+            
+            <div class="magazine-row fade-in-up" data-id="case-1">
+                <div class="magazine-img-box">
+                    <img src="IMG_20250225_155919.jpg" alt="肉品加工">
+                </div>
+                <div class="magazine-content">
+                    <div class="magazine-date">2025/10/10 • 新北</div>
+                    <div class="magazine-title">肉品加工廠擴廠實錄</div>
+                    <div class="magazine-desc">
+                        針對HACCP硬體要求，我們協助客戶設計了獨立的更衣區與嚴格的生熟食動線。僅用三個月時間，便順利通過會勘取得登記，產能翻倍。
+                    </div>
+                    <a href="javascript:void(0)" class="read-more-btn" onclick="openModal('case-1')">閱讀詳情</a>
+                </div>
+            </div>
+
+            <div class="magazine-row fade-in-up" data-id="case-2">
+                <div class="magazine-img-box">
+                    <img src="IMAG3093.jpg" alt="烘焙工坊">
+                </div>
+                <div class="magazine-content">
+                    <div class="magazine-date">2025/09/15 • 桃園</div>
+                    <div class="magazine-title">連鎖烘焙工坊轉型</div>
+                    <div class="magazine-desc">
+                        協助連鎖烘焙坊設立中央廚房。針對粉塵處理與急凍庫節能規劃提出專業方案，成功將一般營業場所轉型為合法工廠。
+                    </div>
+                    <a href="javascript:void(0)" class="read-more-btn" onclick="openModal('case-2')">閱讀詳情</a>
+                </div>
+            </div>
+
+            <div class="magazine-row fade-in-up" data-id="case-3">
+                <div class="magazine-img-box">
+                    <img src="AI工廠106xxx-02.jpg" alt="廢水處理">
+                </div>
+                <div class="magazine-content">
+                    <div class="magazine-date">2025/04/30 • 環保工程</div>
+                    <div class="magazine-title">高濃度廢水處理系統</div>
+                    <div class="magazine-desc">
+                        導入活性污泥法與接觸氧化法，有效處理食品廠高濃度有機廢水，確保排放水質符合最新環保法規，解決客戶的後顧之憂。
+                    </div>
+                    <a href="javascript:void(0)" class="read-more-btn" onclick="openModal('case-3')">閱讀詳情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in-up">準備好啟動您的事業了嗎？</h2>
+            <p class="fade-in-up contact-subtitle">將繁瑣的法規流程交給我們，讓您專注於產品與市場開拓。<br>立即預約免費初步諮詢。</p>
+            <a href="mailto:service@example.com" class="cta-button fade-in-up" style="border: 2px solid var(--accent-gold); color:var(--dark-blue);">立即諮詢</a>
+        </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="modal-template">
+    <div class="modal-container">
+      <button class="modal-close">&times;</button>
+      <h3 class="modal-title"></h3>
+      <p class="modal-date"></p>
+      <img class="modal-img" src="" alt="">
+      <div class="modal-text"></div>
+    </div>
+  </div>
+
+  <script>
+    // --- JS 與原本相同，僅需確保 Class 名稱對應 ---
+    const modalData = {
+        "law-1": { title: "Q1: 自行製造販售食品之規範", date: "114年8月28日", img: "AI工廠102.png", text: "從事食品加工製造及販售等行為事宜，原則上，食品業者有關衛生管理部分，應以符合《食品安全衛生管理法》（食安法）及本準則為前提..." },
+        "law-2": { title: "Q2: 食品分裝、改包裝業者之定性", date: "114年8月28日", img: "IMG_20250901_154419.jpg", text: "從事食品包裝業者即為食品業者，倘食品經分裝製程，且足以影響產品衛生安全，則認屬為食品製造業者..." },
+        // ... (保留您原本的資料) ...
+        "case-1": { title: "新北市肉品加工廠成功案例", date: "2025/10/10", img: "IMG_20250225_155919.jpg", text: "客戶為一傳統肉品加工廠，因應法規加嚴與產能擴充需求，決定搬遷至新廠..." },
+        "case-2": { title: "桃園烘焙工坊轉型登記", date: "2025/09/15", img: "IMAG3093.jpg", text: "此案為桃園地區的連鎖烘焙坊，為擴大供應鏈，決定設立中央廚房..." },
+        "case-3": { title: "廢水處理槽的規劃與設計", date: "2025/04/30", img: "AI工廠106xxx-03.png", text: "食品廠廢水通常含有高濃度的有機物（BOD/COD）..." }
+    };
+
+    // 其他 JS 邏輯 (Scroll animation, Modal open/close) 請沿用原本的 Script
+    document.addEventListener('DOMContentLoaded', function() {
+        const animatedElements = document.querySelectorAll('.fade-in-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        animatedElements.forEach(el => observer.observe(el));
+
+        // Header Scroll
+        const header = document.querySelector('.site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Mobile Menu
+        const hamburger = document.querySelector('.hamburger-menu');
+        const nav = document.querySelector('.main-nav');
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('is-open');
+        });
+
+        // Modal Logic
+        window.openModal = function(id) {
+            const data = modalData[id];
+            if(!data) return;
+            const modal = document.getElementById('modal-template');
+            modal.querySelector('.modal-title').innerText = data.title;
+            modal.querySelector('.modal-date').innerText = data.date;
+            modal.querySelector('.modal-img').src = data.img;
+            modal.querySelector('.modal-text').innerHTML = data.text;
+            modal.classList.add('is-visible');
+        }
+
+        const modalOverlay = document.getElementById('modal-template');
+        modalOverlay.querySelector('.modal-close').addEventListener('click', () => {
+            modalOverlay.classList.remove('is-visible');
+        });
+        modalOverlay.addEventListener('click', (e) => {
+            if(e.target === modalOverlay) modalOverlay.classList.remove('is-visible');
+        });
+
+        // Law Card Click
+        document.querySelectorAll('.law-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // 假設 Law Card 點擊也要開 Modal，或可導向連結
+                const id = card.getAttribute('data-id');
+                if(id && modalData[id]) openModal(id);
+            });
+        });
+    });
+  </script>
+</body>
+</html>
