@@ -201,14 +201,6 @@
     .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
     .hamburger-menu { display: none; z-index: 1001; }
 
-    /* --- 按鈕組合樣式 --- */
-    .cta-group {
-        display: inline-flex;
-        gap: 12px;
-        align-items: center;
-        justify-content: center;
-    }
-
     /* --- Hero Section --- */
     .hero {
       height: 100vh;
@@ -265,6 +257,8 @@
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      border: none;
     }
     .cta-button::before {
         content: '';
@@ -283,25 +277,6 @@
       box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
     }
 
-    /* 回上一頁按鈕樣式 */
-    .back-button {
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        color: var(--white) !important;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    .back-button:hover {
-        background: rgba(255, 255, 255, 0.3);
-        border-color: var(--accent-gold);
-        transform: translateY(-5px);
-    }
-    .site-header.scrolled .back-button {
-        color: var(--primary-blue) !important;
-        border-color: var(--primary-blue);
-        background: transparent;
-    }
-
     /* LINE Icon Style */
     .line-icon {
         width: 20px;
@@ -312,7 +287,7 @@
         flex-shrink: 0;
     }
 
-    .main-nav .cta-button, .main-nav .back-button {
+    .main-nav .cta-button {
         padding: 10px 20px;
         font-size: 1rem;
         box-shadow: none;
@@ -543,9 +518,7 @@
         transition: opacity 0.5s;
         z-index: 0;
     }
-    .step:hover::before {
-        opacity: 1;
-    }
+    .step:hover::before { opacity: 1; }
     .step:hover {
         transform: translateX(8px) scale(1.02);
         box-shadow: 0 0 0 3px var(--accent-gold), 0 8px 25px rgba(0,0,0,0.1);
@@ -653,6 +626,67 @@
       font-size: 1.65rem;
       text-align: justify;
     }
+
+    /* --- LINE Modal Styles --- */
+    .line-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85); /* Slightly darker for better contrast */
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2500; /* Higher than regular modal */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .line-modal-overlay.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .line-modal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+    }
+
+    .line-modal-overlay.is-visible .line-modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .line-qr-img {
+      max-width: 100%;
+      max-height: 60vh;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 5px solid white;
+    }
+
+    /* Override back button style for modal context */
+    .line-modal-content .cta-button.back-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: white !important;
+        min-width: 150px;
+    }
+    .line-modal-content .cta-button.back-btn:hover {
+        background: rgba(255, 255, 255, 0.4);
+        border-color: var(--accent-gold);
+    }
+
 
     /* --- Responsive --- */
     @media (max-width: 992px) {
@@ -850,13 +884,10 @@
         <a href="#guide">廠房規劃</a>
         <a href="#process">申請流程</a>
         <a href="#case">案例分享</a>
-        <div class="cta-group">
-          <a href="javascript:history.back()" class="cta-button back-button">回上一頁</a>
-          <a href="陳總經理QRcode.jpg" target="_blank" class="cta-button">
-            <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
-            諮詢服務
-          </a>
-        </div>
+        <a href="#" class="cta-button js-open-line-modal">
+          <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
+          諮詢服務
+        </a>
       </nav>
       <button class="hamburger-menu" aria-label="Toggle Menu">
         <span></span><span></span><span></span>
@@ -867,6 +898,7 @@
   <main>
     <section id="home" class="hero">
       <div class="hero-content fade-in-up">
+        
         <p>融合20年在地經驗，我們將繁瑣流程化為您的成功基石。從選址到營運，全程專業陪伴。</p>
         <a href="#features" class="cta-button">了解我們的服務</a>
       </div>
@@ -1020,13 +1052,10 @@
         <div class="container" style="text-align: center;">
             <h2 class="section-title fade-in-up">準備好啟動您的事業了嗎？</h2>
             <p class="fade-in-up contact-subtitle">將繁瑣的流程交給我們，讓您專注於產品與市場的開拓。立即聯繫我們，取得免費初步諮詢。</p>
-            <div class="cta-group fade-in-up" style="transition-delay: 0.2s;">
-              <a href="javascript:history.back()" class="cta-button back-button">回上一頁</a>
-              <a href="陳總經理QRcode.jpg" target="_blank" class="cta-button">
-                <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
-                立即諮詢
-              </a>
-            </div>
+            <a href="#" class="cta-button js-open-line-modal fade-in-up" style="transition-delay: 0.2s;">
+              <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
+              立即諮詢
+            </a>
         </div>
     </section>
   </main>
@@ -1047,12 +1076,19 @@
     </div>
   </div>
 
+  <div class="line-modal-overlay" id="line-modal">
+    <div class="line-modal-content">
+      <img src="陳總經理QRcode.jpg" alt="LINE QR Code" class="line-qr-img">
+      <button class="cta-button back-btn" id="close-line-modal">回上一頁</button>
+    </div>
+  </div>
+
   <script>
     // --- 資料庫 ---
     const modalData = {
       "law-1": { title: "Q1: 自行製造販售食品之規範", date: "114年8月28日", img: "AI工廠102.png", text: "從事食品加工製造及販售等行為事宜，原則上，食品業者有關衛生管理部分，應以符合《食品安全衛生管理法》（食安法）及本準則為前提；業者必須盡到所有管理之責任，如產品衛生、安全、標示及廣告等，皆須遵守食品安全衛生相關法令規定。" },
       "law-2": { title: "Q2: 食品分裝、改包裝業者之定性", date: "114年8月28日", img: "IMG_20250901_154419.jpg", text: "從事食品包裝業者即為食品業者，倘食品經分裝製程，且足以影響產品衛生安全，則認屬為食品製造業者，皆須依食安法等相關規定辦理。食安法第8條第1項規定，食品業者之從業人員、作業場所、設施衛生管理及其品保制度，均應符合本準則。" },
-      "law-3": { title: "Q3: 食品工廠作業區門之區隔管理", date: "114年8月28日", img: "IMG_20250805_142051.jpg", text: "依本準則第12條規定，食品製造業作業場所依作業場所依作業性質不同，應個別設置或有效區隔，並採取避免交叉污染之措施。故食品作業場所各作業區的門需隨時關閉且門的密合度需良好，如為自動門，需每日確認是否正常運作。" },
+      "law-3": { title: "Q3: 食品工廠作業區門之區隔管理", date: "114年8月28日", img: "IMG_20250805_142051.jpg", text: "依本準則第12條規定，食品製造業作業場所依作業性質不同，應個別設置或有效區隔，並採取避免交叉污染之措施。故食品作業場所各作業區的門需隨時關閉且門的密合度需良好，如為自動門，需每日確認是否正常運作。" },
       "law-4": { title: "Q4: 食品工廠原料倉儲溫度管制", date: "114年8月28日", img: "IMG_20250904_134214-02.png", text: "依本準則第7條規定，倉儲作業，避免溫度劇烈變動；有管制溫度或溼度必要者，訂定合理溫度或溼度管制方法及基準，並定期檢查及確實記錄。另依本準則第21條規定，食品工廠應就第四條至第十七條所定事項，訂定標準作業程序據以執行，並作成紀錄。" },
       "law-5": { title: "Q5: 食品工廠成品留樣保存規定", date: "114年8月28日", img: "IMG_20250901_151144-02.jpg", text: "依本準則第14條規定，食品製造業訂定產品有效日期，應以保存性之試驗或其他合理文件、資料為據，並將其試驗結果作成紀錄；產品並應留樣保存至有效日期。食品工廠應考量產品本身之加工方式、產品種類、產線等因素及特性，訂定適當之成品留樣方法與標準程序，據以執行，以確保其留樣品之代表性，並負完全之責任。" },
       "law-6": { title: "Q6: 成品留樣室之法規規定", date: "114年8月28日", img: "IMG_20250901_151152-02.jpg", text: "成品留樣主要目的係為確保產品於有效日期前之品質與衛生安全，倘產品發生問題時，可據以確認與釐清問題。食安法等相關規定，雖未明訂應設置留樣室，惟應於符合前述規定之前提下，設置適當的保存環境進行成品留樣，以維持產品品質與衛生安全。" },
@@ -1208,6 +1244,7 @@
         const positionsY = ['0%', '50%', '100%'];
 
         cardImageContainers.forEach(container => {
+          // 1. Set the random sprite background on the main container
           const randomX = positionsX[Math.floor(Math.random() * positionsX.length)];
           const randomY = positionsY[Math.floor(Math.random() * positionsY.length)];
           
@@ -1216,18 +1253,61 @@
           container.style.backgroundPosition = `${randomX} ${randomY}`;
           container.style.backgroundRepeat = 'no-repeat';
 
+          // 2. Find the original image and replace it with a div that has the image as a background
           const originalImg = container.querySelector('img');
           if (originalImg) {
             const imgSrc = originalImg.getAttribute('src');
+            
             const photoBgDiv = document.createElement('div');
             photoBgDiv.classList.add('photo-bg');
             photoBgDiv.style.backgroundImage = `url('${imgSrc}')`;
+            
+            // Replace the <img> with the new <div>
             originalImg.parentNode.replaceChild(photoBgDiv, originalImg);
           }
         });
       }
 
+      // Execute the function
       setupCardImages();
+
+      // --- LINE Modal Logic ---
+      const lineModal = document.getElementById('line-modal');
+      const openLineBtns = document.querySelectorAll('.js-open-line-modal');
+      const closeLineBtn = document.getElementById('close-line-modal');
+
+      function openLineModal(e) {
+        e.preventDefault();
+        lineModal.classList.add('is-visible');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLineModal() {
+        lineModal.classList.remove('is-visible');
+        document.body.style.overflow = '';
+      }
+
+      openLineBtns.forEach(btn => {
+        btn.addEventListener('click', openLineModal);
+      });
+
+      if (closeLineBtn) {
+        closeLineBtn.addEventListener('click', closeLineModal);
+      }
+
+      // Close on outside click
+      lineModal.addEventListener('click', (e) => {
+        if (e.target === lineModal) {
+          closeLineModal();
+        }
+      });
+
+      // Close on Escape key (already handled by document keydown above if we reuse logic, but let's be explicit)
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lineModal.classList.contains('is-visible')) {
+          closeLineModal();
+        }
+      });
 
     });
   </script>
