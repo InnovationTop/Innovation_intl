@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>食品工廠設立與登記顧問服務</title>
+
+  <!-- 你原本的 CSS 可以放在這裡，以下只示範必要樣式 -->
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Microsoft JhengHei", sans-serif;
+      line-height: 1.6;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo a {
+      text-decoration: none;
+      font-weight: 700;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .main-nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.92rem;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #444;
+    }
+
+    .main-nav a:hover {
+      color: #b27c2d;
+    }
+
+    .hero {
+      padding: 48px 16px 32px;
+      background: #f7f3e7;
+    }
+
+    .hero-content {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 1.7rem;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    main section {
+      max-width: 1080px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    /* ---- Line QR 彈窗樣式 ---- */
+    .line-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;          /* 預設隱藏 */
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .line-modal-overlay.active {
+      display: flex;          /* 顯示彈窗 */
+    }
+
+    .line-modal {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px 16px 20px;
+      max-width: 360px;
+      width: 88%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      position: relative;
+    }
+
+    .line-modal h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .line-modal p {
+      margin: 0 0 12px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .line-modal img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .line-modal-close {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .line-modal-close:hover {
+      color: #666;
+    }
+
+    /* 觸發連結樣式 */
+    .line-trigger-link {
+      cursor: pointer;
+    }
+
+    /* 頁尾底部立即諮詢區塊 */
+    .bottom-consult-area {
+      margin-top: 40px;
+      padding: 24px 16px 28px;
+      background: #f7f3e7;
+      text-align: center;
+      border-top: 1px solid #e0d7c5;
+    }
+
+    .bottom-consult-area-title {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .bottom-consult-area-text {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .bottom-consult-btn {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: #00b900;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .bottom-consult-btn:hover {
+      background: #00a000;
+    }
+
+    .site-footer {
+      background: #222;
+      color: #fff;
+      padding: 14px 16px;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 32px;
+      }
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 導覽列 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <a href="#">創新國際管理顧問有限公司</a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#service">服務內容</a></li>
+          <li><a href="#law">最新法規</a></li>
+          <li><a href="#check">查核重點</a></li>
+          <li><a href="#plan">廠房規劃教學</a></li>
+          <li><a href="#process">設立流程</a></li>
+          <li><a href="#cases">成功案例</a></li>
+
+          <!-- 1. 首頁最上方「諮詢服務」：點擊後開啟 Line QR 彈窗 -->
+          <li>
+            <a class="line-trigger-link" id="navLineTrigger">諮詢服務</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>食品工廠設立與登記，一站式顧問服務</h1>
+      <p>融合20年在地經驗，我們將繁瑣流程化為您的成功基石。從選址到營運，全程專業陪伴。</p>
+    </div>
+  </section>
+
+  <!-- 下面放你的原始內容區塊（服務 / 法規 / 查核 / 教學 / 流程 / 案例等） -->
+  <main>
+    <section id="service">
+      <h2>一站式整合服務</h2>
+      <p>依據您的製程需求與法規，打造最高效、合規的生產動線與空間配置……</p>
+      <!-- 其餘內容照你原本的 new-html-169-2.html 填入即可 -->
+    </section>
+
+    <section id="law">
+      <h2>最新法規</h2>
+      <p>Q1: 自行製造販售食品之規範……</p>
+    </section>
+
+    <section id="check">
+      <h2>查核重點</h2>
+      <p>九大程序書與會勘現場常見問題……</p>
+    </section>
+
+    <section id="plan">
+      <h2>廠房規劃教學</h2>
+      <p>食品工廠動線規劃實例、隔間材質選擇等……</p>
+    </section>
+
+    <section id="process">
+      <h2>工廠設立申請流程</h2>
+      <p>用地查核、都市計畫審查、公司登記到聯合會勘的完整流程……</p>
+    </section>
+
+    <section id="cases">
+      <h2>成功案例分享</h2>
+      <p>新北市肉品加工廠、桃園烘焙工坊轉型登記等實務案例……</p>
+    </section>
+
+    <!-- 2. 頁面最底部「立即諮詢」：點擊開啟同一個 Line QR 彈窗 -->
+    <section id="contact" class="bottom-consult-area">
+      <div class="bottom-consult-area-title">立即諮詢</div>
+      <div class="bottom-consult-area-text">
+        點擊下方按鈕，立即開啟 Line QR Code，拿手機掃描即可與顧問一對一聯繫。
+      </div>
+      <a class="bottom-consult-btn" id="bottomLineTrigger">立即諮詢</a>
+    </section>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© 創新國際管理顧問有限公司</p>
+    </div>
+  </footer>
+
+  <!-- Line QR 彈窗 -->
+  <div class="line-modal-overlay" id="lineModal">
+    <div class="line-modal">
+      <span class="line-modal-close" id="lineModalClose">&times;</span>
+      <h3>免費諮詢＋Line</h3>
+      <p>請拿出手機，用相機或 Line 直接掃描下方 QR Code 加入好友。</p>
+      <img src="Mian-Fei-Zi-Xun-Jia-LINE02.jpg" alt="Line 免費諮詢 QR Code" />
+    </div>
+  </div>
+
+  <!-- 簡單的 JS 控制彈窗開關 -->
+  <script>
+    const lineModal = document.getElementById('lineModal');
+    const navLineTrigger = document.getElementById('navLineTrigger');
+    const bottomLineTrigger = document.getElementById('bottomLineTrigger');
+    const lineModalClose = document.getElementById('lineModalClose');
+
+    function openLineModal() {
+      lineModal.classList.add('active');
+    }
+
+    function closeLineModal() {
+      lineModal.classList.remove('active');
+    }
+
+    navLineTrigger.addEventListener('click', openLineModal);
+    bottomLineTrigger.addEventListener('click', openLineModal);
+    lineModalClose.addEventListener('click', closeLineModal);
+
+    // 點擊遮罩關閉
+    lineModal.addEventListener('click', function (e) {
+      if (e.target === lineModal) {
+        closeLineModal();
+      }
+    });
+
+    // 按 Esc 關閉
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeLineModal();
+      }
+    });
+  </script>
+</body>
+</html>
