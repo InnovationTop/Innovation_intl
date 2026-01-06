@@ -121,11 +121,10 @@
       width: 100%;
       max-width: 1400px;
       padding: 0 30px;
-      position: relative; /* Add relative positioning */
+      position: relative;
     }
 
     .logo-area {
-        /* This container is now on the left, holding the logo and tagline */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -133,21 +132,18 @@
 
     .header-h1 {
         color: var(--white);
-        font-size: 1.2rem; /* Medium font size */
-        font-weight: 700; /* Bold */
+        font-size: 1.2rem;
+        font-weight: 700;
         text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
         margin: 5px 0 0 0;
         line-height: 1.3;
-        display: none; /* Initially hidden, shown by the rule below */
-        /* removed white-space: nowrap to allow wrapping */
+        display: none;
     }
 
-    /* Only show the new h1 when the header is transparent at the top of the page */
     .site-header:not(.scrolled) .header-h1 {
         display: block; 
     }
 
-    /* Adjust nav to not overlap when screen is narrow */
     .main-nav {
        flex-shrink: 0;
     }
@@ -155,13 +151,15 @@
 
     .logo a {
       text-decoration: none;
-      font-size: 2rem; /* Larger font size */
-      font-weight: 700; /* Bold */
+      font-size: 2rem;
+      font-weight: 700;
       color: var(--dark-blue);
       transition: color 0.3s;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     }
-    .site-header:not(.scrolled) .logo a { color: var(--white); }
+    .site-header:not(.scrolled) .logo a {
+        color: var(--white);
+    }
 
     .main-nav {
       display: flex;
@@ -203,6 +201,14 @@
     .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
     .hamburger-menu { display: none; z-index: 1001; }
 
+    /* --- 按鈕組合樣式 --- */
+    .cta-group {
+        display: inline-flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+    }
+
     /* --- Hero Section --- */
     .hero {
       height: 100vh;
@@ -236,8 +242,8 @@
     }
 
     .hero p {
-      font-size: 1.2rem; /* Medium font size */
-      font-weight: 400; /* Light/thin font weight */
+      font-size: 1.2rem;
+      font-weight: 400;
       max-width: 650px;
       margin: 0 auto 40px;
       opacity: 0.95;
@@ -245,7 +251,9 @@
     }
 
     .cta-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 18px 45px;
       background: linear-gradient(45deg, var(--accent-gold), #f0c040);
       color: var(--dark-blue) !important;
@@ -274,10 +282,45 @@
       transform: translateY(-5px);
       box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
     }
-    .main-nav .cta-button {
-        padding: 10px 25px;
+
+    /* 回上一頁按鈕樣式 */
+    .back-button {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: var(--white) !important;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .back-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: var(--accent-gold);
+        transform: translateY(-5px);
+    }
+    .site-header.scrolled .back-button {
+        color: var(--primary-blue) !important;
+        border-color: var(--primary-blue);
+        background: transparent;
+    }
+
+    /* LINE Icon Style */
+    .line-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        fill: #00c300;
+        filter: drop-shadow(0 0 1px rgba(255,255,255,0.8));
+        flex-shrink: 0;
+    }
+
+    .main-nav .cta-button, .main-nav .back-button {
+        padding: 10px 20px;
         font-size: 1rem;
         box-shadow: none;
+    }
+    .main-nav .cta-button .line-icon {
+        width: 15px;
+        height: 15px;
+        margin-right: 6px;
     }
     .main-nav .cta-button:hover::after { width: 0; }
 
@@ -378,7 +421,9 @@
         transition: opacity 0.5s;
         z-index: 0;
     }
-    .item-card:hover::before { opacity: 1; }
+    .item-card:hover::before {
+        opacity: 1;
+    }
     .item-card:hover {
       transform: translateY(-12px) scale(1.02);
       box-shadow: 0 0 0 3px var(--accent-gold), 0 12px 35px rgba(0, 0, 0, 0.12);
@@ -389,7 +434,7 @@
     #guide .item-card { border-top-color: var(--primary-blue); }
     #case .item-card { border-top-color: var(--accent-gold); }
 
-    /* --- Item Card Image (Optimized for Image Sprite Background) --- */
+    /* --- Item Card Image --- */
     .item-card-img {
       aspect-ratio: 4 / 3;
       overflow: hidden;
@@ -399,7 +444,6 @@
       position: relative;
       background-color: #f0f4f8; 
       background-repeat: no-repeat;
-      /* background-size is now set by JS */
     }
 
     .item-card-img img, .item-card-img svg {
@@ -408,7 +452,7 @@
       object-fit: contain;
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       position: relative;
-      z-index: 2; /* Image on top */
+      z-index: 2;
       filter: drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white) drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white);
     }
 
@@ -451,7 +495,7 @@
       flex-grow: 1;
     }
 
-    /* --- Process Section (Restored from file 139) --- */
+    /* --- Process Section --- */
     .process-layout {
         display: flex;
         flex-wrap: wrap;
@@ -482,10 +526,10 @@
         background: var(--white);
         border-radius: 12px;
         border-left: 5px solid var(--accent-gold);
-        box-shadow: 0 0 0 2px var(--primary-blue), 0 4px 15px var(--shadow-color); /* 科技感邊框 */
+        box-shadow: 0 0 0 2px var(--primary-blue), 0 4px 15px var(--shadow-color);
         transition: transform 0.3s, box-shadow 0.3s;
-        position: relative; /* For pseudo-element */
-        overflow: hidden; /* For pseudo-element glow */
+        position: relative;
+        overflow: hidden;
     }
     .step::before {
         content: '';
@@ -503,8 +547,8 @@
         opacity: 1;
     }
     .step:hover {
-        transform: translateX(8px) scale(1.02); /* 輕微放大 */
-        box-shadow: 0 0 0 3px var(--accent-gold), 0 8px 25px rgba(0,0,0,0.1); /* 科技感邊框與更明顯陰影 */
+        transform: translateX(8px) scale(1.02);
+        box-shadow: 0 0 0 3px var(--accent-gold), 0 8px 25px rgba(0,0,0,0.1);
     }
     .step > * {
         position: relative;
@@ -643,11 +687,9 @@
       .hamburger-menu { display: block; position: relative; width: 30px; height: 24px; background: none; border: none; cursor: pointer; z-index: 1001; }
       .hamburger-menu span { display: block; width: 100%; height: 3px; background-color: var(--dark-blue); position: absolute; left: 0; transition: all 0.3s; border-radius: 2px; }
       
-      /* --- [FIX START] 修正漢堡圖示位置，使其均勻分佈 --- */
       .hamburger-menu span:nth-child(1) { top: 0; }
       .hamburger-menu span:nth-child(2) { top: 50%; transform: translateY(-50%); }
       .hamburger-menu span:nth-child(3) { bottom: 0; }
-      /* --- [FIX END] --- */
 
       .site-header:not(.scrolled) .hamburger-menu span { background-color: var(--white); }
       .hamburger-menu.is-active span { background-color: var(--white); }
@@ -658,26 +700,24 @@
       .container { padding: 0 35px; }
       section { padding: 60px 0; }
 
-      /* --- 修改手機版 Hero 樣式 (針對您的需求) --- */
       .hero {
         align-items: flex-end; 
       }
 
       .hero-content {
         padding-top: 0;
-        padding-bottom: 10vh; /* 將內容從底部推開 */
+        padding-bottom: 10vh;
       }
       
       .hero p {
-        font-size: 1.2rem; /* Adjusted font size */
-        font-weight: 400; /* Consistent light/thin font weight */
+        font-size: 1.2rem;
+        font-weight: 400;
         text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
         line-height: 1.6;
         margin-bottom: 30px;
       }
-      /* ------------------------------------------- */
 
-      .cta-button { padding: 12px 25px; font-size: 0.9rem; }
+      .cta-button, .back-button { padding: 12px 25px; font-size: 0.9rem; }
       .section-title { font-size: 1.6rem; padding: 12px 20px; margin-bottom: 40px; }
 
       .features-grid, .card-grid, .process-layout { gap: 50px; }
@@ -699,7 +739,6 @@
       .step-detail { font-size: 0.9rem; line-height: 1.6; }
     }
 
-    /* --- Responsive --- */
     @media (max-width: 768px) {
         .hero {
             background-size: contain !important; 
@@ -709,10 +748,9 @@
         }
 
         .body-background-video {
-            /* 手機版：讓影片完整顯示（可能會上下留黑邊），而不是裁切覆蓋 */
             object-fit: contain;
-            filter: none; /* 移除模糊效果以看清影片 */
-            transform: scale(1); /* 恢復正常大小 */
+            filter: none;
+            transform: scale(1);
         }
     }
   
@@ -786,7 +824,7 @@
     .modal-img {
         border: 4px solid var(--white) !important;
         box-sizing: border-box !important;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3) !important; /* 增加一個細微陰影讓邊框更明顯 */
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3) !important;
     }
   </style>
 </head>
@@ -800,7 +838,7 @@
     <div class="header-container">
       <div class="logo-area">
         <div class="logo">
-          <a href="#home">創新國際工廠登記小教室</a>
+          <a href="#home">創新國際</a>
         </div>
         <h1 class="header-h1">食安領航，<br>從工廠登記做起</h1>
       </div>
@@ -812,7 +850,13 @@
         <a href="#guide">廠房規劃</a>
         <a href="#process">申請流程</a>
         <a href="#case">案例分享</a>
-        <a href="#contact" class="cta-button">諮詢服務</a>
+        <div class="cta-group">
+          <a href="javascript:history.back()" class="cta-button back-button">回上一頁</a>
+          <a href="陳總經理QRcode.jpg" target="_blank" class="cta-button">
+            <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
+            諮詢服務
+          </a>
+        </div>
       </nav>
       <button class="hamburger-menu" aria-label="Toggle Menu">
         <span></span><span></span><span></span>
@@ -823,7 +867,6 @@
   <main>
     <section id="home" class="hero">
       <div class="hero-content fade-in-up">
-        
         <p>融合20年在地經驗，我們將繁瑣流程化為您的成功基石。從選址到營運，全程專業陪伴。</p>
         <a href="#features" class="cta-button">了解我們的服務</a>
       </div>
@@ -977,14 +1020,20 @@
         <div class="container" style="text-align: center;">
             <h2 class="section-title fade-in-up">準備好啟動您的事業了嗎？</h2>
             <p class="fade-in-up contact-subtitle">將繁瑣的流程交給我們，讓您專注於產品與市場的開拓。立即聯繫我們，取得免費初步諮詢。</p>
-            <a href="mailto:service@example.com" class="cta-button fade-in-up" style="transition-delay: 0.2s;">立即諮詢</a>
+            <div class="cta-group fade-in-up" style="transition-delay: 0.2s;">
+              <a href="javascript:history.back()" class="cta-button back-button">回上一頁</a>
+              <a href="陳總經理QRcode.jpg" target="_blank" class="cta-button">
+                <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
+                立即諮詢
+              </a>
+            </div>
         </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-container">
-      &copy; 2025 創新國際工廠登記小教室 All Rights Reserved.
+      &copy; 2025 創新國際管理顧問有限公司 All Rights Reserved.
     </div>
   </footer>
 
@@ -1003,7 +1052,7 @@
     const modalData = {
       "law-1": { title: "Q1: 自行製造販售食品之規範", date: "114年8月28日", img: "AI工廠102.png", text: "從事食品加工製造及販售等行為事宜，原則上，食品業者有關衛生管理部分，應以符合《食品安全衛生管理法》（食安法）及本準則為前提；業者必須盡到所有管理之責任，如產品衛生、安全、標示及廣告等，皆須遵守食品安全衛生相關法令規定。" },
       "law-2": { title: "Q2: 食品分裝、改包裝業者之定性", date: "114年8月28日", img: "IMG_20250901_154419.jpg", text: "從事食品包裝業者即為食品業者，倘食品經分裝製程，且足以影響產品衛生安全，則認屬為食品製造業者，皆須依食安法等相關規定辦理。食安法第8條第1項規定，食品業者之從業人員、作業場所、設施衛生管理及其品保制度，均應符合本準則。" },
-      "law-3": { title: "Q3: 食品工廠作業區門之區隔管理", date: "114年8月28日", img: "IMG_20250805_142051.jpg", text: "依本準則第12條規定，食品製造業作業場所依作業性質不同，應個別設置或有效區隔，並採取避免交叉污染之措施。故食品作業場所各作業區的門需隨時關閉且門的密合度需良好，如為自動門，需每日確認是否正常運作。" },
+      "law-3": { title: "Q3: 食品工廠作業區門之區隔管理", date: "114年8月28日", img: "IMG_20250805_142051.jpg", text: "依本準則第12條規定，食品製造業作業場所依作業場所依作業性質不同，應個別設置或有效區隔，並採取避免交叉污染之措施。故食品作業場所各作業區的門需隨時關閉且門的密合度需良好，如為自動門，需每日確認是否正常運作。" },
       "law-4": { title: "Q4: 食品工廠原料倉儲溫度管制", date: "114年8月28日", img: "IMG_20250904_134214-02.png", text: "依本準則第7條規定，倉儲作業，避免溫度劇烈變動；有管制溫度或溼度必要者，訂定合理溫度或溼度管制方法及基準，並定期檢查及確實記錄。另依本準則第21條規定，食品工廠應就第四條至第十七條所定事項，訂定標準作業程序據以執行，並作成紀錄。" },
       "law-5": { title: "Q5: 食品工廠成品留樣保存規定", date: "114年8月28日", img: "IMG_20250901_151144-02.jpg", text: "依本準則第14條規定，食品製造業訂定產品有效日期，應以保存性之試驗或其他合理文件、資料為據，並將其試驗結果作成紀錄；產品並應留樣保存至有效日期。食品工廠應考量產品本身之加工方式、產品種類、產線等因素及特性，訂定適當之成品留樣方法與標準程序，據以執行，以確保其留樣品之代表性，並負完全之責任。" },
       "law-6": { title: "Q6: 成品留樣室之法規規定", date: "114年8月28日", img: "IMG_20250901_151152-02.jpg", text: "成品留樣主要目的係為確保產品於有效日期前之品質與衛生安全，倘產品發生問題時，可據以確認與釐清問題。食安法等相關規定，雖未明訂應設置留樣室，惟應於符合前述規定之前提下，設置適當的保存環境進行成品留樣，以維持產品品質與衛生安全。" },
@@ -1159,7 +1208,6 @@
         const positionsY = ['0%', '50%', '100%'];
 
         cardImageContainers.forEach(container => {
-          // 1. Set the random sprite background on the main container
           const randomX = positionsX[Math.floor(Math.random() * positionsX.length)];
           const randomY = positionsY[Math.floor(Math.random() * positionsY.length)];
           
@@ -1168,22 +1216,17 @@
           container.style.backgroundPosition = `${randomX} ${randomY}`;
           container.style.backgroundRepeat = 'no-repeat';
 
-          // 2. Find the original image and replace it with a div that has the image as a background
           const originalImg = container.querySelector('img');
           if (originalImg) {
             const imgSrc = originalImg.getAttribute('src');
-            
             const photoBgDiv = document.createElement('div');
             photoBgDiv.classList.add('photo-bg');
             photoBgDiv.style.backgroundImage = `url('${imgSrc}')`;
-            
-            // Replace the <img> with the new <div>
             originalImg.parentNode.replaceChild(photoBgDiv, originalImg);
           }
         });
       }
 
-      // Execute the function
       setupCardImages();
 
     });
