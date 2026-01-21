@@ -868,8 +868,34 @@
   
     @keyframes blink {
         0% { opacity: 1; }
-        50% { opacity: 0.3; }
+        50% { opacity: 0.3; } /* 恢復到 0.3 */
         100% { opacity: 1; }
+    }
+
+    /* --- 新增的標題動畫 --- */
+    @keyframes title-glow-animation {
+      from {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4), 0 0 25px rgba(212, 175, 55, 0.5), 0 0 35px rgba(212, 175, 55, 0.4);
+      }
+      to {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.6), 0 0 40px rgba(212, 175, 55, 0.7), 0 0 55px rgba(212, 175, 55, 0.6);
+      }
+    }
+
+    .animated-title {
+      animation: title-glow-animation 2.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes image-custom-blink {
+        0% { opacity: 1; }
+        92.592% { opacity: 1; } /* 2.5秒正常顯示 */
+        92.5921% { opacity: 0.3; } /* 瞬間變暗到0.3 */
+        100% { opacity: 0.3; } /* 維持0.3透明度直到週期結束 */
+    }
+
+    /* 為圖片新增的閃爍動畫 */
+    .image-blink-3s {
+        animation: image-custom-blink 2.7s infinite; /* 使用新的動畫和2.7秒週期 */
     }
   </style>
 </head>
@@ -998,7 +1024,7 @@
                 <div class="item-card fade-in-up" data-id="guide-5"><div class="item-card-img"><img src="IMG_20250805_142321.jpg" alt="地坪"></div><div class="item-card-content"><div class="item-card-title">地坪工程：Epoxy與PU的選擇</div><div class="item-card-date">2025/07/11</div><div class="item-card-desc">分析不同地坪材質の耐磨、防滑、耐化學性...</div></div></div>
                 <div class="item-card fade-in-up" data-id="guide-6"><div class="item-card-img"><img src="IMG_20250904_134653.jpg" alt="空調"></div><div class="item-card-content"><div class="item-card-title">空調與正負壓設計</div><div class="item-card-date">2025/06/15</div><div class="item-card-desc">潔淨區、包裝區的正壓設計，防止外部空氣汙染...</div></div></div>
                 <div class="item-card fade-in-up" data-id="guide-7"><div class="item-card-img"><img src="IMAG7679.jpg" alt="消防"></div><div class="item-card-content"><div class="item-card-title">消防管線與設備配置</div><div class="item-card-date">2025/05/28</div><div class="item-card-desc">偵煙器、灑水頭、排煙窗的配置原則...</div></div></div>
-                <div class="item-card fade-in-up" data-id="guide-8"><div class="item-card-img"><img src="AI工廠106xxx-02.jpg" alt="廢水"></div><div class="item-card-content"><div class="item-card-title">廢水處理槽的規劃與設計</div><div class="item-card-date">2025/04/30</div><div class="item-card-desc">根據工廠產能與廢水水質，規劃適當的處理槽容量與工法...</div></div></div>
+                <div class="item-card fade-in-up" data-id="guide-8"><div class="item-card-img"><img src="AI工廠106xxx-02.jpg" alt="廢水"></div><div class="item-card-content"><div class="item-card-title">廢水處理槽的規劃與設計</div><div class="item-card-date">2025/04/30</div><div class="item-card-desc">根據工廠產能與廢水水質，協助您規劃適當的處理槽容量與工法...</div></div></div>
             </div>
         </div>
     </section>
@@ -1050,7 +1076,7 @@
 
     <section id="case">
         <div class="container">
-            <h2 class="section-title fade-in-up">成功案例分享</h2>
+            <h2 class="section-title fade-in-up animated-title">更多成功案例</h2>
             <div class="card-grid">
                 <div class="item-card fade-in-up" data-id="case-1"><div class="item-card-img"><img src="IMG_20250225_155919.jpg" alt="案例"></div><div class="item-card-content"><div class="item-card-title">新北市肉品加工廠成功案例</div><div class="item-card-date">2025/10/10</div><div class="item-card-desc">客戶為一傳統肉品加工廠，因應法規加嚴與產能擴充需求，決定搬遷至新廠。我們從尋找合適的工業區土地開始，到廠房の整體動線、隔間、空調、廢水處理規劃，全程提供專業建議。特別是在HACCP的硬體要求上，我們協助客戶設計了獨立的更衣區、洗手消毒區，並規劃了嚴格的生熟食處理動線，最終僅用三個月時間，就順利通過所有會勘，取得工廠登記，讓客戶の產能與食安等級同步提升。</div></div></div>
                 <div class="item-card fade-in-up" data-id="case-2"><div class="item-card-img"><img src="IMAG3093.jpg" alt="案例"></div><div class="item-card-content"><div class="item-card-title">桃園烘焙工坊轉型登記</div><div class="item-card-date">2025/09/15</div><div class="item-card-desc">此案為桃園地區的連鎖烘焙坊，為擴大供應鏈，決定設立中央廚房。由於原先的營業登記不符工廠使用，我們協助其辦理地目變更與工廠設立。過程中，我們特別針對烘烤區的消防排煙、麵粉區的粉塵處理，以及急速冷凍庫的節能規劃，提出了專業的解決方案。最終不僅成功取得工廠登記，更為客戶打造了一個兼具安全、衛生與效率的現代化烘焙基地。</div></div></div>
@@ -1093,8 +1119,7 @@
       <!-- Top Section -->
       <div class="qr-section" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
         <a href="http://www.innovation-intl.com.tw/" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-          <img src="創新innovation-intl_QRcode03_瞭解更多.png" alt="了解更多" style="width: auto; max-width: 200px; max-height: 25vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer; transition: transform 0.2s;">
-          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; animation: blink 1.5s infinite; display: block; word-break: break-all; text-align: center; margin-top: 2px;">http://www.innovation-intl.com.tw/</span>
+                    <img src="創新innovation-intl_QRcode03_看成功案例.png" alt="了解更多" class="image-blink-3s" style="width: auto; max-width: 200px; max-height: 25vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer;">          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; animation: blink 1.5s infinite; display: block; word-break: break-all; text-align: center; margin-top: 2px;">http://www.innovation-intl.com.tw/</span>
         </a>
       </div>
 
