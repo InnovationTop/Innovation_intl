@@ -61,6 +61,7 @@
     #audit { background-color: var(--white); }
     #guide { background-color: var(--light-blue); }
     #process { background-color: var(--light-blue); }
+    #case { background-color: var(--white); }
     #contact { background-color: var(--light-gray); }
 
     .section-title {
@@ -407,6 +408,7 @@
     #law .item-card { border-top-color: var(--primary-blue); }
     #audit .item-card { border-top-color: var(--accent-gold); }
     #guide .item-card { border-top-color: var(--primary-blue); }
+    #case .item-card { border-top-color: var(--accent-gold); }
 
     /* --- Item Card Image --- */
     .item-card-img {
@@ -804,8 +806,8 @@
         transform: scale(1.05);
     }
 
-    #features, #audit { background-color: rgba(255, 255, 255, 0.1) !important; }
-    #law, #guide, #process, #broker-cooperation { background-color: rgba(234, 244, 255, 0.15) !important; }
+    #features, #audit, #case { background-color: rgba(255, 255, 255, 0.1) !important; }
+    #law, #guide, #process { background-color: rgba(234, 244, 255, 0.15) !important; }
     #contact { background-color: rgba(248, 249, 250, 0.2) !important; }
 
     .feature-item, .item-card, .step, .canvasbox {
@@ -857,6 +859,7 @@
     #law .item-card-img img,
     #audit .item-card-img img,
     #guide .item-card-img img,
+    #case .item-card-img img,
     .modal-img {
         border: 4px solid var(--white) !important;
         box-sizing: border-box !important;
@@ -917,8 +920,8 @@
         <a href="#audit">查核重點</a>
         <a href="#guide">廠房規劃</a>
         <a href="#process">申請流程</a>
-        <a href="#broker-cooperation">仲介合作專區</a>
-        <a href="#" class="cta-button js-open-line-modal">
+        <a href="#case">案例分享</a>
+        <a href="#" class="cta-button js-open-consult-modal">
           <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
           諮詢服務
         </a>
@@ -1100,18 +1103,29 @@
         </div>
       </div>
       <div style="text-align: center; margin-top: 60px;">
-          <a href="#" class="cta-button js-open-line-modal">
+          <a href="#" class="cta-button js-open-coop-modal">
             <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
               洽談合作
           </a>
       </div>
     </section>
 
+    <section id="case">
+        <div class="container">
+            <h2 class="section-title fade-in-up animated-title">更多成功案例</h2>
+            <div class="card-grid">
+                <div class="item-card fade-in-up" data-id="case-1"><div class="item-card-img"><img src="IMG_20250225_155919.jpg" alt="案例"></div><div class="item-card-content"><div class="item-card-title">新北市肉品加工廠成功案例</div><div class="item-card-date">2025/10/10</div><div class="item-card-desc">客戶為一傳統肉品加工廠，因應法規加嚴與產能擴充需求，決定搬遷至新廠。我們從尋找合適的工業區土地開始，到廠房の整體動線、隔間、空調、廢水處理規劃，全程提供專業建議。特別是在HACCP的硬體要求上，我們協助客戶設計了獨立的更衣區、洗手消毒區，並規劃了嚴格的生熟食處理動線，最終僅用三個月時間，就順利通過所有會勘，取得工廠登記，讓客戶の產能與食安等級同步提升。</div></div></div>
+                <div class="item-card fade-in-up" data-id="case-2"><div class="item-card-img"><img src="IMAG3093.jpg" alt="案例"></div><div class="item-card-content"><div class="item-card-title">桃園烘焙工坊轉型登記</div><div class="item-card-date">2025/09/15</div><div class="item-card-desc">此案為桃園地區的連鎖烘焙坊，為擴大供應鏈，決定設立中央廚房。由於原先的營業登記不符工廠使用，我們協助其辦理地目變更與工廠設立。過程中，我們特別針對烘烤區的消防排煙、麵粉區的粉塵處理，以及急速冷凍庫的節能規劃，提出了專業的解決方案。最終不僅成功取得工廠登記，更為客戶打造了一個兼具安全、衛生與效率的現代化烘焙基地。</div></div></div>
+                <div class="item-card fade-in-up" data-id="case-3"><div class="item-card-img"><img src="AI工廠106xxx-02.jpg" alt="案例"></div><div class="item-card-content"><div class="item-card-title">廢水處理槽的規劃與設計</div><div class="item-card-date">2025/04/30</div><div class="item-card-desc">食品廠廢水通常含有高濃度的有機物（BOD/COD）。我們會根據您的預估產能與廢水水質，協助您規劃適當的處理槽容量與工法（如活性污泥法、接觸氧化法），確保處理後的排放水質符合環保法規的標準。</div></div></div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="container" style="text-align: center;">
             <h2 class="section-title fade-in-up">準備好啟動您的事業了嗎？</h2>
             <p class="fade-in-up contact-subtitle">將繁瑣的流程交給我們，讓您專注於產品與市場的開拓。立即聯繫我們，取得免費初步諮詢。</p>
-            <a href="#" class="cta-button js-open-line-modal fade-in-up" style="transition-delay: 0.2s;">
+            <a href="#" class="cta-button js-open-consult-modal fade-in-up" style="transition-delay: 0.2s;">
               <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
               立即諮詢
             </a>
@@ -1135,12 +1149,33 @@
     </div>
   </div>
 
-  <div class="line-modal-overlay" id="line-modal">
+  <div class="line-modal-overlay" id="line-modal-consult">
+    <div class="line-modal-content">
+      <!-- Top Section -->
+      <div class="qr-section" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+        <a href="http://www.innovation-intl.com.tw/" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+          <img src="創新innovation-intl_QRcode03_看成功案例.png" alt="看成功案例" style="width: auto; max-width: 400px; max-height: 45vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer;">
+          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; animation: blink 1.5s infinite; display: block; word-break: break-all; text-align: center; margin-top: 2px;">http://www.innovation-intl.com.tw/</span>
+        </a>
+      </div>
+
+      <!-- Bottom Section -->
+      <div class="qr-section" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+        <a href="https://line.me/ti/p/TNuzvB3g6m" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+          <img src="陳總經理QRcode02_立即諮詢02.jpg" alt="立即諮詢" style="width: auto; max-width: 400px; max-height: 45vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer; transition: transform 0.2s;">
+          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; display: block; word-break: break-all; text-align: center; margin-top: 2px;">https://line.me/ti/p/TNuzvB3g6m</span>
+        </a>
+      </div>
+      <button class="cta-button back-btn close-line-modal-btn" style="margin-top: 5px; padding: 10px 30px; font-size: 0.9rem;">回上一頁</button>
+    </div>
+  </div>
+
+  <div class="line-modal-overlay" id="line-modal-coop">
     <div class="line-modal-content">
       <a href="https://line.me/ti/p/TNuzvB3g6m" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
         <img src="立即洽談合作01.png" alt="立即洽談合作" style="width: auto; max-width: 400px; max-height: 80vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer; transition: transform 0.2s;">
       </a>
-      <button class="cta-button back-btn" id="close-line-modal" style="margin-top: 5px; padding: 10px 30px; font-size: 0.9rem;">回上一頁</button>
+      <button class="cta-button back-btn close-line-modal-btn" style="margin-top: 5px; padding: 10px 30px; font-size: 0.9rem;">回上一頁</button>
     </div>
   </div>
 
@@ -1152,9 +1187,9 @@
       "law-3": { title: "Q3: 食品工廠作業區門之區隔管理", date: "114年8月28日", img: "IMG_20250805_142051.jpg", text: "依本準則第12條規定，食品製造業作業場所依作業性質不同，應個別設置或有效區隔，並採取避免交叉污染之措施。故食品作業場所各作業區的門需隨時關閉且門的密合度需良好，如為自動門，需每日確認是否正常運作。" },
       "law-4": { title: "Q4: 食品工廠原料倉儲溫度管制", date: "114年8月28日", img: "IMG_20250904_134214-02.png", text: "依本準則第7條規定，倉儲作業，避免溫度劇烈變動；有管制溫度或溼度必要者，訂定合理溫度或溼度管制方法及基準，並定期檢查及確實記錄。另依本準則第21條規定，食品工廠應就第四條至第十七條所定事項，訂定標準作業程序據以執行，並作成紀錄。" },
       "law-5": { title: "Q5: 食品工廠成品留樣保存規定", date: "114年8月28日", img: "IMG_20250901_151144-02.jpg", text: "依本準則第14條規定，食品製造業訂定產品有效日期，應以保存性之試驗或其他合理文件、資料為據，並將其試驗結果作成紀錄；產品並應留樣保存至有效日期。食品工廠應考量產品本身之加工方式、產品種類、產線等因素及特性，訂定適當之成品留樣方法與標準程序，據以執行，以確保其留樣品之代表性，並負完全之責任。" },
-      "law-6": { title: "Q6: 成品留樣室之法規規定", date: "114年8月28日", img: "IMG_20250901_151152-02.jpg", text: "成品留樣主要目的係為確保產品於有效日期前之品質與衛生安全，倘產品發生問題時，可據以確認與釐清問題。食安法等相關規定，雖未明訂應設置留樣室，惟應於符合前述規定之前提下，設置適當的保存環境進行成品留樣，以維持產品品質與衛生安全。" },
+      "law-6": { title: "Q6: 成品留樣室之法規規定", date: "114年8月28日", img: "IMG_20250901_151152-02.jpg", text: "成品留樣主要目的係為確保產品於有效日期前之品質與衛生安全，倘產品發生問題時，可據以確認與釐清問題。食安法等相關規定，雖未明訂應設置留樣室，惟應於符合前述規定之前提下，設置適當的保存環境進行成品留樣, 以維持產品品質與衛生安全。" },
       "audit-0": { title: "九大程序書", date: "2025/11/20", img: "j20250312112736_o.jpg", text: "<ul><li>1. 衛生管理作業程序書</li><li>2. 製程及品質管制作業程序書</li><li>3. 倉儲管制作業程序書</li><li>4. 運輸管制作業程序書</li><li>5. 檢驗與量測管制作業程序書</li><li>6. 客訴管制作業程序書</li><li>7. 成品回收管制作業程序書</li><li>8. 文件管制作業程序書</li><li>9. 教育訓練作業程序書</li></ul><p><strong>會勘現場顧問全程陪同</strong></p>" },
-      "audit-1": { title: "問：工廠是否已完成合法登記，並如實登載食品業資料？", date: "2025/11/06", img: "IMG_20250415_173637.jpg", text: "答：必須出示工廠登記證及食品業者登錄資料，資料需與實際營業型態一致，避免掛羊頭賣狗肉。" },
+      "audit-1": { title: "問：工廠是否已完成合法登記，並如實登載食品業資料？", date: "2025/11/06", img: "IMG_20250415_173637.jpg", text: "答：必須出示工廠登記證及食品業者登錄資料，資料需與實際營業型態一致，避免掛羊頭買狗肉。" },
       "audit-2": { title: "問：原物料來源是否有明確追溯記錄？", date: "2025/11/06", img: "IMG_20250904_144849.jpg", text: "答：應備妥所有原料進貨憑證、來源證明與流向記錄，若為進口需查驗報關單及產地證明，符「源頭控管」原則。" },
       "audit-3": { title: "問：有無落實環境衛生管理、設備是否符合衛生要求？", date: "2025/11/06", img: "IMG_20250224_152330.jpg", text: "答：生產區必須乾淨分區、有防鼠蚊設施，定時清潔消毒並有紀錄，避免污染食品。" },
       "audit-4": { title: "問：是否建立食品生產流程與產品追溯追蹤制度？", date: "2025/11/06", img: "IMG_20250904_143025.jpg", text: "答：每批產品應可追蹤從原料到成品出貨的所有紀錄，包括批號、日期、負責人，以便回溯。" },
@@ -1164,12 +1199,15 @@
       "audit-8": { title: "問：若發現異常事件（如產品不符、客訴），有無啟動通報及回收應變？", date: "2025/11/06", img: "IMAG7841.jpg", text: "答：需建立異常通報與產品回收流程，出現疑慮時應即時向衞生局報告，切勿隱匿或拖延。" },
       "guide-1": { title: "食品工廠動線規劃實例", date: "2025/09/11", img: "IMG_20250805_142041.jpg", text: "一個好的動線規劃應遵循「單向流」原則，從原料入口、倉儲、前處理、加工、包裝到成品出口，形成一條不交叉、不回流的路線。這不僅能有效降低交叉污染的風險，更能大幅提升生產與物流效率，給查核人員留下專業的印象。" },
       "guide-2": { title: "廠房隔間材質選擇", date: "2025/08/24", img: "IMG_20250805_135404.jpg", text: "食品廠隔間需同時考量衛生、防火與成本。常見的庫板（金屬面夾心板）施工快速、表面平滑易清潔，是主流選擇。不鏽鋼材質雖然成本高，但耐用與抗腐蝕性最佳。傳統磚牆則在防火與隔音上表現優異。我們會根據您的預算與製程需求，提供最佳建議。" },
-      "guide-3": { title: "衛生設施標準規劃", date: "2025/08/12", img: "IMG_20250901_154403.jpg", text: "進入生產區前的衛生設施是食安的第一道防線。標準配置應包含：更衣室、鞋櫃、洗手區、乾手區、消毒區。洗手台應為非手動式（感應或腳踏），並提供皂液、乾手機或擦手紙、酒精消毒液。清晰的圖示與流程說明也必不可少。" },
+      "guide-3": { title: "衛生設施標準規劃", date: "2025/08/12", img: "IMG_20250901_154403.jpg", text: "進入生產區前的衛生設施是食安的第一道防線。標準配置應包含：更衣室、鞋櫃、洗手區、乾手區、消毒區。洗手台應為非手動式（感應 or 腳踏），並提供皂液、乾手機或擦手紙、酒精消毒液。清晰的圖示與流程說明也必不可少。" },
       "guide-4": { title: "節能環保廠房設計趨勢", date: "2025/07/25", img: "四川华盛興邦净化-102AI.jpeg", text: "在規劃初期導入節能設計，能有效降低未來長期的營運成本。例如，全面採用LED照明、選擇變頻式高效率的空調與冷凍設備、在屋頂加裝太陽能光電板等。這些投資不僅能節省電費，更能提升企業的ESG形象，並可能符合政府的補助資格。" },
       "guide-5": { title: "地坪工程：Epoxy與PU的選擇", date: "2025/07/11", img: "IMG_20250805_142321.jpg", text: "食品廠地坪要求無縫、易清潔、耐磨、防滑。環氧樹脂（Epoxy）是常見選擇，硬度高、耐化學品，但缺乏彈性。聚氨酯（PU）則更有韌性，耐衝擊與溫差變化。我們會根據您的作業區（如常溫區、冷凍庫、有化學品清潔需求的區域）建議最適合的材質。" },
       "guide-6": { title: "空調與正負壓設計", date: "2025/06/15", img: "IMG_20250904_134653.jpg", text: "為了維持產品品質與衛生，不同作業區需要不同的空氣潔淨度。透過空調系統（HVAC）的設計，可以讓潔淨度要求最高的區域（如內包裝區）維持「正壓」，防止外部空氣帶入污染物。反之，易產生粉塵或氣味的區域則可設計為「負壓」，將污染空氣抽出。" },
       "guide-7": { title: "消防管線與設備配置", date: "2025/05/28", img: "IMAG7679.jpg", text: "消防規劃必須在廠房設計初期就介入。我們會與消防技師合作，根據廠房面積、樓高與危險品級別，規劃偵煙器、灑水頭、消防栓、排煙窗的最適位置與數量，確保符合消防法規，保障人員與財產安全。" },
-      "guide-8": { title: "廢水處理槽的規劃與設計", date: "2025/04/30", img: "AI工廠106xxx-02.jpg", text: "食品廠廢水通常含有高濃度的有機物（BOD/COD）。我們會根據您的預估產能與廢水水質，協助您規劃適當的處理槽容量與工法（如活性污泥法、接觸氧化法），確保處理後的排放水質符合環保法規的標準。" }
+      "guide-8": { title: "廢水處理槽的規劃與設計", date: "2025/04/30", img: "AI工廠106xxx-02.jpg", text: "食品廠廢水通常含有高濃度的有機物（BOD/COD）。我們會根據您的預估產能與廢水水質，協助您規劃適當的處理槽容量與工法（如活性污泥法、接觸氧化法），確保處理後的排放水質符合環保法規的標準。" },
+      "case-1": { title: "新北市肉品加工廠成功案例", date: "2025/10/10", img: "IMG_20250225_155919.jpg", text: "客戶為一傳統肉品加工廠，因應法規加嚴與產能擴充需求，決定搬遷至新廠。我們從尋找合適的工業區土地開始，到廠房の整體動線、隔間、空調、廢水處理規劃，全程提供專業建議。特別是在HACCP的硬體要求上，我們協助客戶設計了獨立的更衣區、洗手消毒區，並規劃了嚴格的生熟食處理動線，最終僅用三個月時間，就順利通過所有會勘，取得工廠登記，讓客戶の產能與食安等級同步提升。" },
+      "case-2": { title: "桃園烘焙工坊轉型登記", date: "2025/09/15", img: "IMAG3093.jpg", text: "此案為桃園地區的連鎖烘焙坊，為擴大供應鏈，決定設立中央廚房。由於原先的營業登記不符工廠使用，我們協助其辦理地目變更與工廠設立。過程中，我們特別針對烘烤區的消防排煙、麵粉區的粉塵處理，以及急速冷凍庫的節能規劃，提出了專業的解決方案。最終不僅成功取得工廠登記，更為客戶打造了一個兼具安全、衛生與效率的現代化烘焙基地。" },
+      "case-3": { title: "廢水處理槽的規劃與設計", date: "2025/04/30", img: "AI工廠106xxx-03.png", text: "食品廠廢水通常含有高濃度的有機物（BOD/COD）。我們會根據您的預估產能與廢水水質，協助您規劃適當的處理槽容量與工法（如活性污泥法、接觸氧化法），確保處理後的排放水質符合環保法規的標準。" }
     };
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -1309,6 +1347,8 @@
           container.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${spriteImage}')`;
           container.style.backgroundSize = '300% 300%';
           container.style.backgroundPosition = `${randomX} ${randomY}`;
+          container.style.backgroundPositionX = randomX;
+          container.style.backgroundPositionY = randomY;
           container.style.backgroundRepeat = 'no-repeat';
 
           // 2. Find the original image and replace it with a div that has the image as a background
@@ -1330,40 +1370,68 @@
       setupCardImages();
 
       // --- LINE Modal Logic ---
-      const lineModal = document.getElementById('line-modal');
-      const openLineBtns = document.querySelectorAll('.js-open-line-modal');
-      const closeLineBtn = document.getElementById('close-line-modal');
+      const consultModal = document.getElementById('line-modal-consult');
+      const coopModal = document.getElementById('line-modal-coop');
+      
+      const openConsultBtns = document.querySelectorAll('.js-open-consult-modal');
+      const openCoopBtns = document.querySelectorAll('.js-open-coop-modal');
+      const closeButtons = document.querySelectorAll('.close-line-modal-btn');
 
-      function openLineModal(e) {
-        e.preventDefault();
-        lineModal.classList.add('is-visible');
+      function openLineModal(modal) {
+        if (!modal) return;
+        modal.classList.add('is-visible');
         document.body.style.overflow = 'hidden';
       }
 
-      function closeLineModal() {
-        lineModal.classList.remove('is-visible');
+      function closeLineModal(modal) {
+        if (!modal) return;
+        modal.classList.remove('is-visible');
         document.body.style.overflow = '';
       }
-
-      openLineBtns.forEach(btn => {
-        btn.addEventListener('click', openLineModal);
-      });
-
-      if (closeLineBtn) {
-        closeLineBtn.addEventListener('click', closeLineModal);
+      
+      function closeAllLineModals() {
+          if(consultModal) closeLineModal(consultModal);
+          if(coopModal) closeLineModal(coopModal);
       }
 
-      // Close on outside click
-      lineModal.addEventListener('click', (e) => {
-        if (e.target === lineModal) {
-          closeLineModal();
-        }
+      openConsultBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLineModal(consultModal);
+        });
       });
 
-      // Close on Escape key (already handled by document keydown above if we reuse logic, but let's be explicit)
+      openCoopBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLineModal(coopModal);
+        });
+      });
+
+      closeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Find parent modal
+            const modal = btn.closest('.line-modal-overlay');
+            closeLineModal(modal);
+        });
+      });
+
+      // Close on outside click
+      [consultModal, coopModal].forEach(modal => {
+          if(modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                closeLineModal(modal);
+                }
+            });
+          }
+      });
+
+      // Close on Escape key
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lineModal.classList.contains('is-visible')) {
-          closeLineModal();
+        if (e.key === 'Escape') {
+          closeAllLineModals();
         }
       });
 
