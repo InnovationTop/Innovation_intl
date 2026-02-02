@@ -517,7 +517,6 @@
         margin-bottom: 40px;
         padding: 25px;
         background: var(--white);
-        border-radius: 12px;
         border-left: 5px solid var(--accent-gold);
         box-shadow: 0 0 0 2px var(--primary-blue), 0 4px 15px var(--shadow-color);
         transition: transform 0.3s, box-shadow 0.3s;
@@ -674,15 +673,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 10px; /* 極小間距 */
+      justify-content: flex-start; /* 從頂部開始排列 */
+      gap: 60px; /* 適當的圖示間距 */
       transform: translateY(20px) scale(0.95);
       transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       width: 95%;
       max-width: 450px;
-      padding: 15px; /* 減少內距 */
-      max-height: 100vh;
-      overflow: hidden;
+      padding: 30px 15px; /* 增加上下內邊距 */
+      max-height: 95vh; /* 留出一些螢幕邊距 */
+      overflow-y: auto; /* 在垂直方向上需要時顯示滾動條 */
     }
 
     .line-modal-overlay.is-visible .line-modal-content {
@@ -717,6 +716,25 @@
       .section-title { font-size: 2.2rem; }
     }
 
+    @keyframes slow-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hamburger-label {
+      position: absolute;
+      top: -25px; /* 調整到漢堡圖示上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--dark-blue); /* 預設深色，因為桌面版背景是淺色 */
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+      animation: slow-blink 2s infinite ease-in-out;
+      display: none; /* 預設隱藏，只在手機版顯示 */
+      white-space: nowrap; /* 防止文字換行 */
+    }
+
     @media (max-width: 768px) {
       body { font-size: 15px; } 
       
@@ -740,7 +758,21 @@
       .main-nav a:hover, .main-nav a.active { color: var(--accent-gold); }
       .main-nav a::after { background-color: var(--accent-gold); }
       
-      .hamburger-menu { display: block; position: relative; width: 30px; height: 24px; background: none; border: none; cursor: pointer; z-index: 1001; }
+      .hamburger-wrapper {
+        position: relative; /* 為了定位裡面的 label */
+        width: 30px; /* 和 hamburger-menu 的寬度一致 */
+        height: 24px; /* 和 hamburger-menu 的高度一致 */
+      }
+
+      .hamburger-label {
+        display: block; /* 在手機版顯示 */
+        color: var(--dark-blue); /* 預設深色 */
+      }
+      .site-header:not(.scrolled):not(.force-opaque) .hamburger-label {
+        color: var(--white); /* 未滾動時白色 */
+      }
+
+      .hamburger-menu { display: block; position: absolute; top:0; left:0; width: 100%; height: 100%; background: none; border: none; cursor: pointer; z-index: 1001; }
       .hamburger-menu span { display: block; width: 100%; height: 3px; background-color: var(--dark-blue); position: absolute; left: 0; transition: all 0.3s; border-radius: 2px; }
       
       .hamburger-menu span:nth-child(1) { top: 0; }
@@ -752,6 +784,10 @@
       .hamburger-menu.is-active span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
       .hamburger-menu.is-active span:nth-child(2) { opacity: 0; }
       .hamburger-menu.is-active span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+      .hamburger-menu.is-active + .hamburger-label, /* 當漢堡菜單打開時，隱藏 label */
+      .hamburger-wrapper .hamburger-label.is-active { /* fallback for older browsers or if direct sibling selector fails */
+        display: none;
+      }
 
       .container { padding: 0 35px; }
       section { padding: 60px 0; }
@@ -913,6 +949,25 @@
         animation: image-custom-blink 2.7s infinite;
     }
 
+    @keyframes slow-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hamburger-label {
+      position: absolute;
+      top: -25px; /* 調整到漢堡圖示上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--dark-blue); /* 預設深色，因為桌面版背景是淺色 */
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+      animation: slow-blink 2s infinite ease-in-out;
+      display: none; /* 預設隱藏，只在手機版顯示 */
+      white-space: nowrap; /* 防止文字換行 */
+    }
+
     /* --- View Switching Classes --- */
     .view-container {
         width: 100%;
@@ -960,14 +1015,16 @@
         <a href="#guide" class="nav-link" data-target="home">廠房規劃</a>
         <a href="#process" class="nav-link" data-target="home">申請流程</a>
         <a href="#broker" class="nav-link" data-target="broker">仲介合作專區</a>
-        <a href="#" class="cta-button js-open-consult-modal">
-          <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z"/></svg>
-          諮詢服務
+        <a href="http://www.innovation-intl.com.tw/" target="_blank" class="cta-button" style="text-align: center; line-height: 1.3; padding: 8px 20px;">
+          想看更多<br>官網
         </a>
       </nav>
-      <button class="hamburger-menu" aria-label="Toggle Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="hamburger-wrapper">
+        <span class="hamburger-label">點我</span>
+        <button class="hamburger-menu" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -1034,118 +1091,14 @@
                         </div>
                       </div>
                     </div>
-                    <div class="item-card fade-in-up" data-id="audit-1"><div class="item-card-img"><img src="IMG_20250415_173637.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：工廠是否已完成合法登記？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">
-                          <ul>
-                            <li>1. 衛生管理作業程序書</li>
-                            <li>2. 製程及品質管制作業程序書</li>
-                            <li>3. 倉儲管制作業程序書</li>
-                            <li>4. 運輸管制作業程序書</li>
-                            <li>5. 檢驗與量測管制作業程序書</li>
-                            <li>6. 客訴管制作業程序書</li>
-                            <li>7. 成品回收管制作業程序書</li>
-                            <li>8. 文件管制作業程序書</li>
-                            <li>9. 教育訓練作業程序書</li>
-                          </ul>
-                          <p><strong>會勘現場顧問全程陪同</strong></p>
-                        </div></div></div>
-                    <div class="item-card fade-in-up" data-id="audit-2"><div class="item-card-img"><img src="IMG_20250904_144849.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：原物料來源是否有追溯記錄？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">
-                          <ul>
-                            <li>1. 衛生管理作業程序書</li>
-                            <li>2. 製程及品質管制作業程序書</li>
-                            <li>3. 倉儲管制作業程序書</li>
-                            <li>4. 運輸管制作業程序書</li>
-                            <li>5. 檢驗與量測管制作業程序書</li>
-                            <li>6. 客訴管制作業程序書</li>
-                            <li>7. 成品回收管制作業程序書</li>
-                            <li>8. 文件管制作業程序書</li>
-                            <li>9. 教育訓練作業程序書</li>
-                          </ul>
-                          <p><strong>會勘現場顧問全程陪同</strong></p>
-                        </div></div></div>
-                    <div class="item-card fade-in-up" data-id="audit-3"><div class="item-card-img"><img src="IMG_20250224_152330.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：有無落實環境衛生管理？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">
-                          <ul>
-                            <li>1. 衛生管理作業程序書</li>
-                            <li>2. 製程及品質管制作業程序書</li>
-                            <li>3. 倉儲管制作業程序書</li>
-                            <li>4. 運輸管制作業程序書</li>
-                            <li>5. 檢驗與量測管制作業程序書</li>
-                            <li>6. 客訴管制作業程序書</li>
-                            <li>7. 成品回收管制作業程序書</li>
-                            <li>8. 文件管制作業程序書</li>
-                            <li>9. 教育訓練作業程序書</li>
-                          </ul>
-                          <p><strong>會勘現場顧問全程陪同</strong></p>
-                        </div></div></div>
-                    <div class="item-card fade-in-up" data-id="audit-4"><div class="item-card-img"><img src="IMG_20250904_143025.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：是否建立產品追溯追蹤制度？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">
-                          <ul>
-                            <li>1. 衛生管理作業程序書</li>
-                            <li>2. 製程及品質管制作業程序書</li>
-                            <li>3. 倉儲管制作業程序書</li>
-                            <li>4. 運輸管制作業程序書</li>
-                            <li>5. 檢驗與量測管制作業程序書</li>
-                            <li>6. 客訴管制作業程序書</li>
-                            <li>7. 成品回收管制作業程序書</li>
-                            <li>8. 文件管制作業程序書</li>
-                            <li>9. 教育訓練作業程序書</li>
-                          </ul>
-                          <p><strong>會勘現場顧問全程陪同</strong></p>
-                        </div></div></div>
-                    <div class="item-card fade-in-up" data-id="audit-5"><div class="item-card-img"><img src="IMG_20250901_151238.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：有無定期自主檢驗？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">
-                          <ul>
-                            <li>1. 衛生管理作業程序書</li>
-                            <li>2. 製程及品質管制作業程序書</li>
-                            <li>3. 倉儲管制作業程序書</li>
-                            <li>4. 運輸管制作業程序書</li>
-                            <li>5. 檢驗與量測管制作業程序書</li>
-                            <li>6. 客訴管制作業程序書</li>
-                            <li>7. 成品回收管制作業程序書</li>
-                            <li>8. 文件管制作業程序書</li>
-                            <li>9. 教育訓練作業程序書</li>
-                          </ul>
-                          <p><strong>會勘現場顧問全程陪同</strong></p>
-                        </div></div></div>
-                    <div class="item-card fade-in-up" data-id="audit-6"><div class="item-card-img"><img src="IMAG3098.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：成品或包材有無完整標示？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">
-                          <ul>
-                            <li>1. 衛生管理作業程序書</li>
-                            <li>2. 製程及品質管制作業程序書</li>
-                            <li>3. 倉儲管制作業程序書</li>
-                            <li>4. 運輸管制作業程序書</li>
-                            <li>5. 檢驗與量測管制作業程序書</li>
-                            <li>6. 客訴管制作業程序書</li>
-                            <li>7. 成品回收管制作業程序書</li>
-                            <li>8. 文件管制作業程序書</li>
-                            <li>9. 教育訓練作業程序書</li>
-                          </ul>
-                          <p><strong>會勘現場顧問全程陪同</strong></p>
-                        </div></div></div>
-                    <div class="item-card fade-in-up" data-id="audit-7"><div class="item-card-img"><img src="IMG_20250225_160217.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：有無配合衛生局查驗？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">
-                          <ul>
-                            <li>1. 衛生管理作業程序書</li>
-                            <li>2. 製程及品質管制作業程序書</li>
-                            <li>3. 倉儲管制作業程序書</li>
-                            <li>4. 運輸管制作業程序書</li>
-                            <li>5. 檢驗與量測管制作業程序書</li>
-                            <li>6. 客訴管制作業程序書</li>
-                            <li>7. 成品回收管制作業程序書</li>
-                            <li>8. 文件管制作業程序書</li>
-                            <li>9. 教育訓練作業程序書</li>
-                          </ul>
-                          <p><strong>會勘現場顧問全程陪同</strong></p>
-                        </div></div></div>
-                    <div class="item-card fade-in-up" data-id="audit-8"><div class="item-card-img"><img src="IMAG7841.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：異常事件有無通報及回收？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">
-                          <ul>
-                            <li>1. 衛生管理作業程序書</li>
-                            <li>2. 製程及品質管制作業程序書</li>
-                            <li>3. 倉儲管制作業程序書</li>
-                            <li>4. 運輸管制作業程序書</li>
-                            <li>5. 檢驗與量測管制作業程序書</li>
-                            <li>6. 客訴管制作業程序書</li>
-                            <li>7. 成品回收管制作業程序書</li>
-                            <li>8. 文件管制作業程序書</li>
-                            <li>9. 教育訓練作業程序書</li>
-                          </ul>
-                          <p><strong>會勘現場顧問全程陪同</strong></p>
-                        </div></div></div>
+                    <div class="item-card fade-in-up" data-id="audit-1"><div class="item-card-img"><img src="IMG_20250415_173637.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：工廠是否已完成合法登記？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">必須出示工廠登記證及食品業者登錄資料...</div></div></div>
+                    <div class="item-card fade-in-up" data-id="audit-2"><div class="item-card-img"><img src="IMG_20250904_144849.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：原物料來源是否有追溯記錄？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">應備妥所有原料進貨憑證、來源證明與流向記錄...</div></div></div>
+                    <div class="item-card fade-in-up" data-id="audit-3"><div class="item-card-img"><img src="IMG_20250224_152330.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：有無落實環境衛生管理？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">生產區必須乾淨分區、有防鼠蚊設施...</div></div></div>
+                    <div class="item-card fade-in-up" data-id="audit-4"><div class="item-card-img"><img src="IMG_20250904_143025.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：是否建立產品追溯追蹤制度？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">每批產品應可追蹤從原料到成品出貨的所有紀錄...</div></div></div>
+                    <div class="item-card fade-in-up" data-id="audit-5"><div class="item-card-img"><img src="IMG_20250901_151238.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：有無定期自主檢驗？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">業者需有自主管理計畫，定期檢驗水質、原料及成品的衞生安全，並保存檢查記錄。</div></div></div>
+                    <div class="item-card fade-in-up" data-id="audit-6"><div class="item-card-img"><img src="IMAG3098.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：成品或包材有無完整標示？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">包裝必須按照食安法規標示，內容真實、無瞞漏，並含製造商、登錄字號等須揭露資料。</div></div></div>
+                    <div class="item-card fade-in-up" data-id="audit-7"><div class="item-card-img"><img src="IMG_20250225_160217.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：有無配合衛生局查驗？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">必須主動申報及配合衛生局現場稽查及產品抽驗...</div></div></div>
+                    <div class="item-card fade-in-up" data-id="audit-8"><div class="item-card-img"><img src="IMAG7841.jpg" alt="查核"></div><div class="item-card-content"><div class="item-card-title">問：異常事件有無通報及回收？</div><div class="item-card-date">2025/11/06</div><div class="item-card-desc">需建立異常通報與產品回收流程，出現疑慮時應即時向衞生局報告，切勿隱匿或拖延。</div></div></div>
                 </div>
             </div>
         </section>
@@ -1183,11 +1136,11 @@
                         <line x1="205" y1="580" x2="205" y2="632" stroke="#8A60D1" stroke-width="2" marker-end="url(#arrow)"/>
                         <g class="svgblock"><rect x="15" y="640" rx="18" ry="18" width="380" height="100" fill="#FFDDE2" stroke="#CC4069" stroke-width="2"/><text x="205" y="670" class="svglabel" text-anchor="middle">5. 申請建照與使用執照</text><foreignObject x="20" y="685" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">合法建築使用、排水排煙動線</p><p style="font-size:13px; color:#CC4069; font-family:Arial; margin:0; text-align:center; word-wrap:break-word;">現有建物須確認產權及稅籍合法性</p></body></foreignObject></g>
                         <line x1="205" y1="740" x2="205" y2="792" stroke="#CC4069" stroke-width="2" marker-end="url(#arrow)"/>
-                        <g class="svgblock"><rect x="15" y="800" rx="18" ry="18" width="380" height="110" fill="#F8EBDF" stroke="#C9883C" stroke-width="2"/><text x="205" y="830" class="svglabel" text-anchor="middle">6. 設備清單與環保/消防/衛生申請</text><foreignObject x="20" y="845" width="370" height="70"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">列主要機具規格、功率與布局</p><p style="font-size:13px; color:#C9883C; font-family:Arial; margin:0; text-align:center; word-wrap:break-word;">環保/消防/衛生證明齊備，流程圖說一併附上</p></body></foreignObject></g>
+                        <g class="svgblock"><rect x="15" y="800" rx="18" ry="18" width="380" height="110" fill="#F8EBDF" stroke="#C9883C" stroke-width="2"/><text x="205" y="830" class="svglabel" text-anchor="middle">6. 設備清單與環保/消防/衛生申請</text><foreignObject x="20" y="845" width="370" height="70"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">列主要機具規格、功率與布局</p><p style="font-size:13px; color:#C9883C; font-family:Arial; margin:0; text-align:center; word-wrap:break-word;">環保/消防/衛生證明齊備，流程圖說須清楚標示。</p></body></foreignObject></g>
                         <line x1="205" y1="910" x2="205" y2="962" stroke="#C9883C" stroke-width="2" marker-end="url(#arrow)"/>
-                        <g class="svgblock"><rect x="15" y="970" rx="18" ry="18" width="380" height="100" fill="#EAF7EA" stroke="#51AC9A" stroke-width="2"/><text x="205" y="1000" class="svglabel" text-anchor="middle">7. 準備登記申請全套資料</text><foreignObject x="20" y="1015" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">包含以上所有證明、使用執照、契約文件</p><p style="font-size:13px; color:#51AC9A; font-family:Arial; margin:0; text-align:center; word-wrap:break-word;">各文件請檢查正本、影印本、簽章</p></body></foreignObject></g>
+                        <g class="svgblock"><rect x="15" y="970" rx="18" ry="18" width="380" height="100" fill="#EAF7EA" stroke="#51AC9A" stroke-width="2"/><text x="205" y="1000" class="svglabel" text-anchor="middle">7. 準備登記申請全套文件</text><foreignObject x="20" y="1015" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">蒐集公司設立證明、產權、建照、設備明細、消防/環保等字號文件，檢查簽章與正本、影印本齊全。</p></body></foreignObject></g>
                         <line x1="205" y1="1070" x2="205" y2="1122" stroke="#51AC9A" stroke-width="2" marker-end="url(#arrow)"/>
-                        <g class="svgblock"><rect x="15" y="1130" rx="18" ry="18" width="380" height="100" fill="#FFFCE0" stroke="#EDCB48" stroke-width="2"/><text x="205" y="1160" class="svglabel" text-anchor="middle">8. 向經發局正式遞件</text><foreignObject x="20" y="1175" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">臨櫃或線上申請，提交全套資料</p><p style="font-size:13px; color:#EDCB48; font-family:Arial; margin:0; text-align:center; word-wrap:break-word;">留意各縣市受理窗口不同</p></body></foreignObject></g>
+                        <g class="svgblock"><rect x="15" y="1130" rx="18" ry="18" width="380" height="100" fill="#FFFCE0" stroke="#EDCB48" stroke-width="2"/><text x="205" y="1160" class="svglabel" text-anchor="middle">8. 向經發局正式遞件</text><foreignObject x="20" y="1175" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">臨櫃或線上方式申辦，留意各縣市受理窗口不同</p></body></foreignObject></g>
                         <line x1="205" y1="1230" x2="205" y2="1282" stroke="#EDCB48" stroke-width="2" marker-end="url(#arrow)"/>
                         <g class="svgblock"><rect x="15" y="1290" rx="18" ry="18" width="380" height="100" fill="#D4EAF2" stroke="#53AED4" stroke-width="2"/><text x="205" y="1320" class="svglabel" text-anchor="middle">9. 聯合現地會勘審查</text><foreignObject x="20" y="1335" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">主管機關協同消防、衛生等查驗</p><p style="font-size:13px; color:#53AED4; font-family:Arial; margin:0; text-align:center; word-wrap:break-word;">如需改善，會收到補正通知</p></body></foreignObject></g>
                         <line x1="205" y1="1390" x2="205" y2="1442" stroke="#53AED4" stroke-width="2" marker-end="url(#arrow)"/>
@@ -1239,7 +1192,7 @@
               <ul class="broker-list">
                 <li><span>✅</span><strong>事前評估：</strong>協助評估土地/廠房是否可合法登記，避免成交後糾紛。</li>
                 <li><span>✅</span><strong>增加賣點：</strong>提供「成功登記案例」的專業背書，讓您的物件更具競爭力。</li>
-                <li><span>✅</span><strong>法規諮詢：</strong>隨時解決客戶對工廠登記的疑難雜症。</li>
+                <li><span>✅</span><strong>法規諮詢：：</strong>隨時解決客戶對工廠登記的疑難雜症。</li>
             </ul>
             </div>
             <div class="feature-item" style="transition-delay: 0.2s;">
@@ -1247,8 +1200,8 @@
               <h3>致：外勞仲介夥伴</h3>
               <p style="text-align:center; color: var(--primary-blue); margin-bottom: 20px;">證照下得來，移工才進得去</p>
               <ul class="broker-list">
-                <li><span>✅</span><strong>快速取證：</strong>加速辦理工廠登記證與相關函文，縮短您的等待期。</li>
-                <li><span>✅</span><strong>案件解套：</strong>協助解決卡關的工廠資格問題，讓您能順利申請外勞配額。</li>
+                <li><span>✅</span><strong>快速取證：：</strong>加速辦理工廠登記證與相關函文，縮短您的等待期。</li>
+                <li><span>✅</span><strong>案件解套：：</strong>協助解決卡關的工廠資格問題，讓您能順利申請外勞配額。</li>
                 <li><span>✅</span><strong>互利導客：</strong>當我們的客戶有缺工需求時，優先轉介給合作的仲介夥伴。</li>
             </ul>
             </div>
@@ -1285,16 +1238,16 @@
       <!-- Top Section -->
       <div class="qr-section" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
         <a href="http://www.innovation-intl.com.tw/" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-          <img src="創新innovation-intl_QRcode03_看成功案例.png" alt="看成功案例" style="width: auto; max-width: 400px; max-height: 45vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer;">
-          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; animation: blink 1.5s infinite; display: block; word-break: break-all; text-align: center; margin-top: 2px;">http://www.innovation-intl.com.tw/</span>
+          <img src="創新innovation-intl_QRcode03_看成功案例.png" alt="看成功案例" style="width: auto; max-width: 400px; max-height: 35vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer;">
+          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; animation: blink 1.5s infinite; display: block; word-break: break-all; text-align: center; margin-top: 2px;">點我 http://www.innovation-intl.com.tw/</span>
         </a>
       </div>
 
       <!-- Bottom Section -->
       <div class="qr-section" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
         <a href="https://line.me/ti/p/TNuzvB3g6m" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-          <img src="陳總經理QRcode02_立即諮詢02.jpg" alt="立即諮詢" style="width: auto; max-width: 400px; max-height: 45vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer; transition: transform 0.2s;">
-          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; display: block; word-break: break-all; text-align: center; margin-top: 2px;">https://line.me/ti/p/TNuzvB3g6m</span>
+          <img src="陳總經理QRcode02_立即諮詢02.jpg" alt="立即諮詢" style="width: auto; max-width: 400px; max-height: 35vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer; transition: transform 0.2s;">
+          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; display: block; word-break: break-all; text-align: center; margin-top: 2px;">點我 https://line.me/ti/p/TNuzvB3g6m</span>
         </a>
       </div>
       <button class="cta-button back-btn close-line-modal-btn" style="margin-top: 5px; padding: 10px 30px; font-size: 0.9rem;">回上一頁</button>
@@ -1319,6 +1272,7 @@
         const brokerLink = document.querySelector('a[href="#broker"]');
         const hamburger = document.querySelector('.hamburger-menu');
         const nav = document.querySelector('.main-nav');
+        const hamburgerLabel = document.querySelector('.hamburger-label');
         
         // Close mobile menu if open
         if (nav.classList.contains('is-open')) {
@@ -1346,6 +1300,17 @@
             window.dispatchEvent(new Event('scroll'));
             
             if(brokerLink) brokerLink.classList.remove('active');
+        }
+
+        // Update hamburger label visibility
+        if (hamburgerLabel && window.innerWidth <= 768) {
+            if (nav.classList.contains('is-open')) {
+                hamburgerLabel.style.display = 'none'; // Menu is open, hide label
+            } else {
+                hamburgerLabel.style.display = 'block'; // Menu is closed, show label
+            }
+        } else if (hamburgerLabel) {
+            hamburgerLabel.style.display = 'none'; // Always hide on desktop
         }
     }
 
@@ -1399,6 +1364,17 @@
       hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('is-active');
         nav.classList.toggle('is-open');
+        const hamburgerLabel = document.querySelector('.hamburger-label');
+        if (hamburgerLabel) {
+            if (nav.classList.contains('is-open')) {
+                hamburgerLabel.style.display = 'none'; // Menu is open, hide label
+            } else {
+                // Menu is closed, show label only on mobile
+                if (window.innerWidth <= 768) { 
+                    hamburgerLabel.style.display = 'block'; 
+                }
+            }
+        }
       });
 
       // --- Navigation Click Handling ---
