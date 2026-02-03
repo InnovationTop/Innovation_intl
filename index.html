@@ -731,7 +731,7 @@
       font-weight: 700;
       text-shadow: 0 0 5px rgba(0,0,0,0.8);
       animation: slow-blink 2s infinite ease-in-out;
-      display: none; /* 預設隱藏，只在手機版顯示 */
+      display: none; /* 預設隱藏，由 JS 控制 */
       white-space: nowrap; /* 防止文字換行 */
     }
 
@@ -764,13 +764,12 @@
         height: 24px; /* 和 hamburger-menu 的高度一致 */
       }
 
-      .hamburger-label {
-        display: block; /* 在手機版顯示 */
-        color: var(--dark-blue); /* 預設深色 */
-      }
+      /* 這段 CSS 在手機版不再需要強制 block，由 JS 處理 */
+      /* 
       .site-header:not(.scrolled):not(.force-opaque) .hamburger-label {
         color: var(--white); /* 未滾動時白色 */
       }
+      */
 
       .hamburger-menu { display: block; position: absolute; top:0; left:0; width: 100%; height: 100%; background: none; border: none; cursor: pointer; z-index: 1001; }
       .hamburger-menu span { display: block; width: 100%; height: 3px; background-color: var(--dark-blue); position: absolute; left: 0; transition: all 0.3s; border-radius: 2px; }
@@ -784,10 +783,14 @@
       .hamburger-menu.is-active span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
       .hamburger-menu.is-active span:nth-child(2) { opacity: 0; }
       .hamburger-menu.is-active span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
-      .hamburger-menu.is-active + .hamburger-label, /* 當漢堡菜單打開時，隱藏 label */
-      .hamburger-wrapper .hamburger-label.is-active { /* fallback for older browsers or if direct sibling selector fails */
+      
+      /* JS 會直接控制 display，所以這個 CSS 選擇器可以移除 */
+      /* 
+      .hamburger-menu.is-active + .hamburger-label, 
+      .hamburger-wrapper .hamburger-label.is-active {
         display: none;
       }
+      */
 
       .container { padding: 0 35px; }
       section { padding: 60px 0; }
@@ -947,25 +950,6 @@
     /* 為圖片新增的閃爍動畫 */
     .image-blink-3s {
         animation: image-custom-blink 2.7s infinite;
-    }
-
-    @keyframes slow-blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    .hamburger-label {
-      position: absolute;
-      top: -25px; /* 調整到漢堡圖示上方 */
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--dark-blue); /* 預設深色，因為桌面版背景是淺色 */
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-shadow: 0 0 5px rgba(0,0,0,0.8);
-      animation: slow-blink 2s infinite ease-in-out;
-      display: none; /* 預設隱藏，只在手機版顯示 */
-      white-space: nowrap; /* 防止文字換行 */
     }
 
     /* --- View Switching Classes --- */
@@ -1138,7 +1122,7 @@
                         <line x1="205" y1="740" x2="205" y2="792" stroke="#CC4069" stroke-width="2" marker-end="url(#arrow)"/>
                         <g class="svgblock"><rect x="15" y="800" rx="18" ry="18" width="380" height="110" fill="#F8EBDF" stroke="#C9883C" stroke-width="2"/><text x="205" y="830" class="svglabel" text-anchor="middle">6. 設備清單與環保/消防/衛生申請</text><foreignObject x="20" y="845" width="370" height="70"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">列主要機具規格、功率與布局</p><p style="font-size:13px; color:#C9883C; font-family:Arial; margin:0; text-align:center; word-wrap:break-word;">環保/消防/衛生證明齊備，流程圖說須清楚標示。</p></body></foreignObject></g>
                         <line x1="205" y1="910" x2="205" y2="962" stroke="#C9883C" stroke-width="2" marker-end="url(#arrow)"/>
-                        <g class="svgblock"><rect x="15" y="970" rx="18" ry="18" width="380" height="100" fill="#EAF7EA" stroke="#51AC9A" stroke-width="2"/><text x="205" y="1000" class="svglabel" text-anchor="middle">7. 準備登記申請全套文件</text><foreignObject x="20" y="1015" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">蒐集公司設立證明、產權、建照、設備明細、消防/環保等字號文件，檢查簽章與正本、影印本齊全。</p></body></foreignObject></g>
+                        <g class="svgblock"><rect x="15" y="970" rx="18" ry="18" width="380" height="100" fill="#EAF7EA" stroke="#51AC9A" stroke-width="2"/><text x="205" y="1000" class="svglabel" text-anchor="middle">7. 申請登記全套文件</text><foreignObject x="20" y="1015" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">蒐集公司設立證明、產權、建照、設備明細、消防/環保等字號文件，檢查簽章與正本、影印本齊全。</p></body></foreignObject></g>
                         <line x1="205" y1="1070" x2="205" y2="1122" stroke="#51AC9A" stroke-width="2" marker-end="url(#arrow)"/>
                         <g class="svgblock"><rect x="15" y="1130" rx="18" ry="18" width="380" height="100" fill="#FFFCE0" stroke="#EDCB48" stroke-width="2"/><text x="205" y="1160" class="svglabel" text-anchor="middle">8. 向經發局正式遞件</text><foreignObject x="20" y="1175" width="370" height="60"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-size:15px; color:#445088; font-family:Arial; margin:0; text-align:center;">臨櫃或線上方式申辦，留意各縣市受理窗口不同</p></body></foreignObject></g>
                         <line x1="205" y1="1230" x2="205" y2="1282" stroke="#EDCB48" stroke-width="2" marker-end="url(#arrow)"/>
@@ -1247,8 +1231,8 @@
       <div class="qr-section" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
         <a href="https://line.me/ti/p/TNuzvB3g6m" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
           <img src="陳總經理QRcode02_立即諮詢02.jpg" alt="立即諮詢" style="width: auto; max-width: 400px; max-height: 35vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer; transition: transform 0.2s;">
-          <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; display: block; word-break: break-all; text-align: center; margin-top: 2px;">點我 https://line.me/ti/p/TNuzvB3g6m</span>
         </a>
+        <span style="color: #00B900; font-size: 0.9rem; text-decoration: none; font-weight: bold; display: block; word-break: break-all; text-align: center; margin-top: 2px;">點我 https://line.me/ti/p/TNuzvB3g6m</span>
       </div>
       <button class="cta-button back-btn close-line-modal-btn" style="margin-top: 5px; padding: 10px 30px; font-size: 0.9rem;">回上一頁</button>
     </div>
@@ -1264,7 +1248,7 @@
   </div>
 
   <script>
-    // --- View Switching Logic ---
+    // --- 全域函式：切換視圖 ---
     function switchView(viewName) {
         const homeView = document.getElementById('view-home');
         const brokerView = document.getElementById('view-broker');
@@ -1272,9 +1256,8 @@
         const brokerLink = document.querySelector('a[href="#broker"]');
         const hamburger = document.querySelector('.hamburger-menu');
         const nav = document.querySelector('.main-nav');
-        const hamburgerLabel = document.querySelector('.hamburger-label');
         
-        // Close mobile menu if open
+        // 切換視圖時，如果手機選單是開啟的，就關閉它
         if (nav.classList.contains('is-open')) {
             hamburger.classList.remove('is-active');
             nav.classList.remove('is-open');
@@ -1291,26 +1274,20 @@
             document.querySelectorAll('.main-nav a:not([href="#broker"])').forEach(el => el.classList.remove('active'));
             
             window.scrollTo(0, 0);
-        } else { // Default to home
+        } else { // 預設回到首頁
             brokerView.classList.add('view-hidden');
             homeView.classList.remove('view-hidden');
             header.classList.remove('force-opaque');
             
-            // Trigger scroll event to check if header should be scrolled
+            // 觸發滾動事件來檢查 header 是否需要變色
             window.dispatchEvent(new Event('scroll'));
             
             if(brokerLink) brokerLink.classList.remove('active');
         }
 
-        // Update hamburger label visibility
-        if (hamburgerLabel && window.innerWidth <= 768) {
-            if (nav.classList.contains('is-open')) {
-                hamburgerLabel.style.display = 'none'; // Menu is open, hide label
-            } else {
-                hamburgerLabel.style.display = 'block'; // Menu is closed, show label
-            }
-        } else if (hamburgerLabel) {
-            hamburgerLabel.style.display = 'none'; // Always hide on desktop
+        // 統一調用漢堡標籤可見性函式
+        if (typeof manageHamburgerLabel === 'function') {
+            manageHamburgerLabel();
         }
     }
 
@@ -1335,6 +1312,25 @@
       "guide-8": { title: "廢水處理槽的規劃與設計", date: "2025/04/30", img: "AI工廠106xxx-02.jpg", text: "食品廠廢水通常含有高濃度的有機物（BOD/COD）。我們會根據您的預估產能與廢水水質，協助您規劃適當的處理槽容量與工法（如活性污泥法、接觸氧化法），確保處理後的排放水質符合環保法規的標準。" }
     };
 
+    // --- 全域函式：管理漢堡選單提示文字的可見性 ---
+    // 將此函式設為全域，以便 switchView 也能呼叫
+    function manageHamburgerLabel() {
+        const hamburgerLabel = document.querySelector('.hamburger-label');
+        const nav = document.querySelector('.main-nav');
+        if (!hamburgerLabel || !nav) return;
+
+        const isMobile = window.innerWidth <= 768;
+        const isNavOpen = nav.classList.contains('is-open');
+
+        // 條件：在手機版 且 選單是關閉的 -> 顯示提示文字
+        if (isMobile && !isNavOpen) {
+            hamburgerLabel.style.display = 'block';
+        } else {
+            hamburgerLabel.style.display = 'none';
+        }
+    }
+
+
     document.addEventListener('DOMContentLoaded', function() {
       const bgVideo = document.querySelector('.body-background-video');
       if (bgVideo) {
@@ -1343,13 +1339,17 @@
       const header = document.querySelector('.site-header');
       const hamburger = document.querySelector('.hamburger-menu');
       const nav = document.querySelector('.main-nav');
-      const navLinks = document.querySelectorAll('.main-nav a.nav-link'); // Target specific nav links
+      const navLinks = document.querySelectorAll('.main-nav a.nav-link');
       const sections = document.querySelectorAll('section');
       const animatedElements = document.querySelectorAll('.fade-in-up');
       const cards = document.querySelectorAll('.item-card');
       const modalOverlay = document.getElementById('modal-template');
       const modalContainer = modalOverlay.querySelector('.modal-container');
       const modalCloseBtn = modalOverlay.querySelector('.modal-close');
+
+      // --- 【修正】頁面載入時和視窗縮放時，立即檢查並設定提示文字狀態 ---
+      manageHamburgerLabel();
+      window.addEventListener('resize', manageHamburgerLabel);
 
       // --- Header Scroll Effect ---
       window.addEventListener('scroll', () => {
@@ -1364,17 +1364,8 @@
       hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('is-active');
         nav.classList.toggle('is-open');
-        const hamburgerLabel = document.querySelector('.hamburger-label');
-        if (hamburgerLabel) {
-            if (nav.classList.contains('is-open')) {
-                hamburgerLabel.style.display = 'none'; // Menu is open, hide label
-            } else {
-                // Menu is closed, show label only on mobile
-                if (window.innerWidth <= 768) { 
-                    hamburgerLabel.style.display = 'block'; 
-                }
-            }
-        }
+        // 【修正】點擊時，同樣呼叫統一的管理函式
+        manageHamburgerLabel(); 
       });
 
       // --- Navigation Click Handling ---
@@ -1382,17 +1373,17 @@
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
             
-            // Check if it's the Broker link
+            // 點擊仲介合作連結
             if (href === '#broker') {
                 e.preventDefault();
                 switchView('broker');
-            } else if (href.startsWith('#')) { // It's a home section link
-                // If we are currently in broker view, switch to home first
+            } else if (href.startsWith('#')) { // 點擊首頁的其他區塊連結
+                // 如果當前在仲介頁，先切回首頁
                 const brokerView = document.getElementById('view-broker');
                 if (!brokerView.classList.contains('view-hidden')) {
-                     e.preventDefault(); // Prevent default jump for a moment
+                     e.preventDefault(); 
                      switchView('home');
-                     // Now scroll to the target manually
+                     // 手動滾動到目標區塊
                      const targetId = href.substring(1);
                      const targetSection = document.getElementById(targetId);
                      if (targetSection) {
@@ -1401,13 +1392,14 @@
                          }, 10);
                      }
                 }
-                // If already in home view, default anchor behavior works fine
             }
             
-            // Close mobile menu
+            // 點擊後關閉手機選單 (如果已開啟)
             if (nav.classList.contains('is-open')) {
                 hamburger.classList.remove('is-active');
                 nav.classList.remove('is-open');
+                // 【修正】關閉選單後，也要更新提示文字狀態
+                manageHamburgerLabel(); 
             }
         });
       });
@@ -1420,7 +1412,6 @@
       };
 
       const sectionObserver = new IntersectionObserver((entries, observer) => {
-        // Only update active state if we are in Home view
         if (!document.getElementById('view-home').classList.contains('view-hidden')) {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
