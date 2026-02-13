@@ -1262,6 +1262,35 @@
     .image-blink-3s {
       animation: image-custom-blink 2.7s infinite;
     }
+
+    /* --- Marquee Animation --- */
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      background-color: var(--accent-gold);
+      color: var(--dark-blue);
+      padding: 15px 0 0 0;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 4s linear infinite;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
   </style>
 </head>
 
@@ -1285,7 +1314,7 @@
         <a href="#audit" class="nav-link">查核重點</a>
         <a href="#guide" class="nav-link">廠房規劃</a>
         <a href="#process" class="nav-link">申請流程</a>
-        <a href="new-html-205-broker.html" class="nav-link">仲介合作專區</a>
+        <a href="new-html-208-broker.html" class="nav-link">仲介合作專區</a>
         <a href="http://www.innovation-intl.com.tw/" target="_blank" class="cta-button"
           style="text-align: center; line-height: 1.3; padding: 8px 20px;">
           想看更多<br>官網
@@ -1663,11 +1692,15 @@
     <section id="contact">
       <div class="container" style="text-align: center;">
         <h2 class="section-title fade-in-up" style="font-size: 2rem; margin-bottom: 30px;">您是我們正在尋覓的仲介伙伴嗎?</h2>
-        <a href="new-html-205-broker.html" class="cta-button fade-in-up" style="margin-bottom: 80px;">
+        <a href="new-html-208-broker.html" class="cta-button fade-in-up" style="margin-bottom: 80px;">
           點我 進合作專區
         </a>
 
-        <h2 class="section-title fade-in-up">準備好啟動您的事業了嗎？</h2>
+        <div class="marquee-container fade-in-up" style="margin-top: 50px;">
+          <div class="marquee-content">我想開工廠賺大錢&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我想開工廠賺大錢</div>
+        </div>
+
+        <h2 class="section-title fade-in-up" style="margin-top: 0;">準備好啟動您的事業了嗎？</h2>
         <p class="fade-in-up contact-subtitle">將繁瑣的流程交給我們，讓您專注於產品與市場的開拓。立即聯繫我們，取得免費初步諮詢。</p>
         <a href="#" class="cta-button js-open-consult-modal fade-in-up" style="transition-delay: 0.2s;">
           <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
