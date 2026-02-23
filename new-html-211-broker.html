@@ -2,777 +2,777 @@
 <html lang="zh-Hant">
 
 <head>
-    <meta charset="UTF-8">
-    <title>創新國際 - 仲介合作專區 | 產業一條龍 合作創三贏</title>
-    <meta name="description" content="專為工廠仲介與外勞仲介打造的合作平台。協助事前評估、快速取證、案件解套。創新國際整合工廠登記與法規專業，與您共創雙贏。">
-    <meta name="keywords" content="工廠仲介合作, 外勞仲介合作, 工廠登記">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-        /* --- 變數與基礎設定 --- */
-        :root {
-            --dark-blue: #0D2F4F;
-            --primary-blue: #1A5A96;
-            --light-blue: #eaf4ff;
-            --accent-gold: #D4AF37;
-            --light-gray: #f8f9fa;
-            --white: #ffffff;
-            --text-color: #343a40;
-            --text-light: #6c757d;
-            --shadow-color: rgba(0, 0, 0, 0.08);
-            --techy-glow: rgba(26, 90, 150, 0.4);
-            --header-height: 110px;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: var(--header-height);
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Roboto', 'Noto Sans TC', sans-serif;
-            background-color: var(--white);
-            color: var(--text-color);
-            line-height: 1.8;
-            font-size: 17px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* 仲介專區的背景設定 */
-        #broker-cooperation {
-            background-color: var(--light-blue);
-            min-height: 80vh;
-            padding-top: 150px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--white);
-            background-color: rgba(13, 44, 79, 0.6);
-            border: 2px solid var(--accent-gold);
-            padding: 20px 40px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 0 auto 80px auto;
-            position: relative;
-            backdrop-filter: blur(5px);
-            width: fit-content;
-            max-width: 90%;
-            animation: border-pulse 3s infinite alternate ease-in-out;
-        }
-
-        .section-title.dark-theme {
-            color: var(--dark-blue);
-            background-color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* --- 動畫效果 --- */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .fade-in-up.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Header --- */
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--header-height);
-            background-color: rgba(255, 255, 255, 0.9);
-            /* Force opaque for sub-page */
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 15px var(--shadow-color);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1400px;
-            padding: 0 30px;
-            position: relative;
-        }
-
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .header-h1 {
-            color: var(--primary-blue);
-            /* Darker text for white header */
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 5px 0 0 0;
-            line-height: 1.3;
-            display: block;
-        }
-
-        .logo a {
-            text-decoration: none;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark-blue);
-            transition: color 0.3s;
-        }
-
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .main-nav a {
-            text-decoration: none;
-            color: var(--primary-blue);
-            font-weight: 500;
-            font-size: 1.1rem;
-            position: relative;
-            padding: 5px 0;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .main-nav a.active {
-            color: var(--dark-blue);
-        }
-
-        .main-nav a.active::after {
-            width: 100%;
-        }
-
-        .main-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 3px;
-            background-color: var(--accent-gold);
-            border-radius: 2px;
-            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .main-nav a:hover {
-            color: var(--accent-gold);
-        }
-
-        .main-nav a:hover::after {
-            width: 100%;
-        }
-
-        .hamburger-menu {
-            display: none;
-            z-index: 1001;
-        }
-
-        /* LINE Icon Style */
-        .line-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            fill: #00c300;
-            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
-            flex-shrink: 0;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 18px 45px;
-            background: linear-gradient(45deg, var(--accent-gold), #f0c040);
-            color: var(--dark-blue) !important;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            border: none;
-        }
-
-        .main-nav .cta-button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            box-shadow: none;
-        }
-
-        .main-nav .cta-button .line-icon {
-            width: 15px;
-            height: 15px;
-            margin-right: 6px;
-        }
-
-        .main-nav .cta-button:hover::after {
-            width: 0;
-        }
-
-        .back-button {
-            background: var(--text-light);
-            color: var(--white) !important;
-        }
-
-        .back-button:hover {
-            background: var(--primary-blue);
-        }
-
-        /* --- Features Grid --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 100px;
-            text-align: center;
-        }
-
-        .feature-item {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 0 2px var(--primary-blue), 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 0 0 3px var(--accent-gold), 0 12px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-item .icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--light-blue), var(--white));
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            transition: transform 0.3s, color 0.3s;
-        }
-
-        .feature-item h3 {
-            font-size: 1.6rem;
-            color: var(--dark-blue);
-            margin-bottom: 15px;
-        }
-
-        /* --- Broker Specific List Styles --- */
-        .broker-list {
-            text-align: left;
-            padding-left: 0;
-            list-style-type: none;
-            font-size: 1rem;
-            color: var(--text-color);
-        }
-
-        .broker-list li {
-            margin-bottom: 10px;
-            display: flex;
-        }
-
-        .broker-list li span {
-            color: #28a745;
-            margin-right: 10px;
-        }
-
-        /* --- Footer --- */
-        .site-footer {
-            background-color: var(--dark-blue);
-            color: var(--light-gray);
-            padding: 60px 0;
-            text-align: center;
-            font-size: 1rem;
-        }
-
-        .footer-container {
-            font-size: 0.9rem;
-        }
-
-        /* --- LINE Modal Styles --- */
-        .line-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2500;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s, visibility 0.4s;
-        }
-
-        .line-modal-overlay.is-visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .line-modal-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            transform: translateY(20px) scale(0.95);
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            width: 95%;
-            max-width: 450px;
-            padding: 30px 15px;
-        }
-
-        .line-modal-overlay.is-visible .line-modal-content {
-            transform: translateY(0) scale(1);
-        }
-
-        .line-modal-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .line-modal-content .cta-button.back-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            color: white !important;
-            min-width: 150px;
-        }
-
-        .line-modal-content .cta-button.back-btn:hover {
-            background: rgba(255, 255, 255, 0.4);
-            border-color: var(--accent-gold);
-        }
-
-        @keyframes border-pulse {
-            0% {
-                box-shadow:
-                    0 0 0 2px var(--accent-gold),
-                    0 0 0 4px var(--primary-blue),
-                    0 0 0 6px var(--accent-gold),
-                    0 4px 20px rgba(0, 0, 0, 0.3),
-                    0 0 15px var(--techy-glow);
-            }
-
-            50% {
-                box-shadow:
-                    0 0 0 3px var(--accent-gold),
-                    0 0 0 5px var(--primary-blue),
-                    0 0 0 7px var(--accent-gold),
-                    0 4px 25px rgba(0, 0, 0, 0.4),
-                    0 0 20px var(--techy-glow);
-            }
-
-            100% {
-                box-shadow:
-                    0 0 0 2px var(--accent-gold),
-                    0 0 0 4px var(--primary-blue),
-                    0 0 0 6px var(--accent-gold),
-                    0 4px 20px rgba(0, 0, 0, 0.3),
-                    0 0 15px var(--techy-glow);
-            }
-        }
-
-        @keyframes slow-blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        .hamburger-label {
-            position: absolute;
-            top: -25px;
-            /* 調整到漢堡圖示上方 */
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--dark-blue);
-            /* 預設深色 */
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-            animation: slow-blink 2s infinite ease-in-out;
-            display: none;
-            /* 預設隱藏，只在手機版顯示 */
-            white-space: nowrap;
-            /* 防止文字換行 */
-        }
-
-        @media (max-width: 768px) {
-            body {
-                font-size: 15px;
-            }
-
-            .main-nav {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 100%;
-                height: 100vh;
-                background-color: var(--dark-blue);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 35px;
-                transform: translateX(100%);
-                transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-                padding: 0;
-            }
-
-            .main-nav.is-open {
-                transform: translateX(0);
-            }
-
-            .main-nav a {
-                color: var(--white);
-                font-size: 1.8rem;
-                font-weight: 700;
-            }
-
-            .main-nav a:hover,
-            .main-nav a.active {
-                color: var(--accent-gold);
-            }
-
-            .main-nav a::after {
-                background-color: var(--accent-gold);
-            }
-
-            .hamburger-wrapper {
-                position: relative;
-                /* 為了定位裡面的 label */
-                width: 30px;
-                /* 和 hamburger-menu 的寬度一致 */
-                height: 24px;
-                /* 和 hamburger-menu 的高度一致 */
-            }
-
-            .hamburger-label {
-                display: block;
-                /* 在手機版顯示 */
-            }
-
-            .hamburger-menu {
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: none;
-                border: none;
-                cursor: pointer;
-                z-index: 1001;
-            }
-
-            .hamburger-menu span {
-                display: block;
-                width: 100%;
-                height: 3px;
-                background-color: var(--dark-blue);
-                position: absolute;
-                left: 0;
-                transition: all 0.3s;
-                border-radius: 2px;
-            }
-
-            .hamburger-menu span:nth-child(1) {
-                top: 0;
-            }
-
-            .hamburger-menu span:nth-child(2) {
-                top: 50%;
-                transform: translateY(-50%);
-            }
-
-            .hamburger-menu span:nth-child(3) {
-                bottom: 0;
-            }
-
-            .hamburger-menu.is-active span {
-                background-color: var(--white);
-            }
-
-            .hamburger-menu.is-active span:nth-child(1) {
-                top: 50%;
-                transform: translateY(-50%) rotate(45deg);
-            }
-
-            .hamburger-menu.is-active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger-menu.is-active span:nth-child(3) {
-                bottom: 50%;
-                transform: translateY(50%) rotate(-45deg);
-            }
-
-            .hamburger-menu.is-active+.hamburger-label,
-            .hamburger-wrapper .hamburger-label.is-active {
-                display: none;
-            }
-
-            .container {
-                padding: 0 35px;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-
-            .cta-button,
-            .back-button {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-
-            .section-title {
-                font-size: 1.6rem;
-                padding: 12px 20px;
-                margin-bottom: 40px;
-            }
-
-            .features-grid {
-                gap: 50px;
-            }
-
-            .feature-item {
-                padding: 20px 15px;
-            }
-
-            .feature-item .icon {
-                width: 55px;
-                height: 55px;
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-            }
-
-            .feature-item h3 {
-                font-size: 1.2rem;
-            }
-
-            .feature-item p {
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>創新國際 - 仲介合作專區 | 產業一條龍 合作創三贏</title>
+  <meta name="description" content="專為工廠仲介與外勞仲介打造的合作平台。協助事前評估、快速取證、案件解套。創新國際整合工廠登記與法規專業，與您共創雙贏。">
+  <meta name="keywords" content="工廠仲介合作, 外勞仲介合作, 工廠登記">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* --- 變數與基礎設定 --- */
+    :root {
+      --dark-blue: #0D2F4F;
+      --primary-blue: #1A5A96;
+      --light-blue: #eaf4ff;
+      --accent-gold: #D4AF37;
+      --light-gray: #f8f9fa;
+      --white: #ffffff;
+      --text-color: #343a40;
+      --text-light: #6c757d;
+      --shadow-color: rgba(0, 0, 0, 0.08);
+      --techy-glow: rgba(26, 90, 150, 0.4);
+      --header-height: 110px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+      background-color: var(--white);
+      color: var(--text-color);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 仲介專區的背景設定 */
+    #broker-cooperation {
+      background-color: var(--light-blue);
+      min-height: 80vh;
+      padding-top: 150px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--white);
+      background-color: rgba(13, 44, 79, 0.6);
+      border: 2px solid var(--accent-gold);
+      padding: 20px 40px;
+      border-radius: 15px;
+      text-align: center;
+      margin: 0 auto 80px auto;
+      position: relative;
+      backdrop-filter: blur(5px);
+      width: fit-content;
+      max-width: 90%;
+      animation: border-pulse 3s infinite alternate ease-in-out;
+    }
+
+    .section-title.dark-theme {
+      color: var(--dark-blue);
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* --- 動畫效果 --- */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .fade-in-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Header --- */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      background-color: rgba(255, 255, 255, 0.9);
+      /* Force opaque for sub-page */
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px var(--shadow-color);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      padding: 0 30px;
+      position: relative;
+    }
+
+    .logo-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-h1 {
+      color: var(--primary-blue);
+      /* Darker text for white header */
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 5px 0 0 0;
+      line-height: 1.3;
+      display: block;
+    }
+
+    .logo a {
+      text-decoration: none;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark-blue);
+      transition: color 0.3s;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: var(--primary-blue);
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .main-nav a.active {
+      color: var(--dark-blue);
+    }
+
+    .main-nav a.active::after {
+      width: 100%;
+    }
+
+    .main-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+      transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .main-nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    .main-nav a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger-menu {
+      display: none;
+      z-index: 1001;
+    }
+
+    /* LINE Icon Style */
+    .line-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      fill: #00c300;
+      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
+      flex-shrink: 0;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 45px;
+      background: linear-gradient(45deg, var(--accent-gold), #f0c040);
+      color: var(--dark-blue) !important;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: none;
+    }
+
+    .main-nav .cta-button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      box-shadow: none;
+    }
+
+    .main-nav .cta-button .line-icon {
+      width: 15px;
+      height: 15px;
+      margin-right: 6px;
+    }
+
+    .main-nav .cta-button:hover::after {
+      width: 0;
+    }
+
+    .back-button {
+      background: var(--text-light);
+      color: var(--white) !important;
+    }
+
+    .back-button:hover {
+      background: var(--primary-blue);
+    }
+
+    /* --- Features Grid --- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 100px;
+      text-align: center;
+    }
+
+    .feature-item {
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 0 2px var(--primary-blue), 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 0 0 3px var(--accent-gold), 0 12px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-item .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, var(--light-blue), var(--white));
+      color: var(--primary-blue);
+      margin-bottom: 25px;
+      border-radius: 50%;
+      box-shadow: 0 5px 15px var(--shadow-color);
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .feature-item h3 {
+      font-size: 1.6rem;
+      color: var(--dark-blue);
+      margin-bottom: 15px;
+    }
+
+    /* --- Broker Specific List Styles --- */
+    .broker-list {
+      text-align: left;
+      padding-left: 0;
+      list-style-type: none;
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    .broker-list li {
+      margin-bottom: 10px;
+      display: flex;
+    }
+
+    .broker-list li span {
+      color: #28a745;
+      margin-right: 10px;
+    }
+
+    /* --- Footer --- */
+    .site-footer {
+      background-color: var(--dark-blue);
+      color: var(--light-gray);
+      padding: 60px 0;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .footer-container {
+      font-size: 0.9rem;
+    }
+
+    /* --- LINE Modal Styles --- */
+    .line-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2500;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .line-modal-overlay.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .line-modal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      width: 95%;
+      max-width: 450px;
+      padding: 30px 15px;
+    }
+
+    .line-modal-overlay.is-visible .line-modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .line-modal-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .line-modal-content .cta-button.back-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      color: white !important;
+      min-width: 150px;
+    }
+
+    .line-modal-content .cta-button.back-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      border-color: var(--accent-gold);
+    }
+
+    @keyframes border-pulse {
+      0% {
+        box-shadow:
+          0 0 0 2px var(--accent-gold),
+          0 0 0 4px var(--primary-blue),
+          0 0 0 6px var(--accent-gold),
+          0 4px 20px rgba(0, 0, 0, 0.3),
+          0 0 15px var(--techy-glow);
+      }
+
+      50% {
+        box-shadow:
+          0 0 0 3px var(--accent-gold),
+          0 0 0 5px var(--primary-blue),
+          0 0 0 7px var(--accent-gold),
+          0 4px 25px rgba(0, 0, 0, 0.4),
+          0 0 20px var(--techy-glow);
+      }
+
+      100% {
+        box-shadow:
+          0 0 0 2px var(--accent-gold),
+          0 0 0 4px var(--primary-blue),
+          0 0 0 6px var(--accent-gold),
+          0 4px 20px rgba(0, 0, 0, 0.3),
+          0 0 15px var(--techy-glow);
+      }
+    }
+
+    @keyframes slow-blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .hamburger-label {
+      position: absolute;
+      top: -25px;
+      /* 調整到漢堡圖示上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--dark-blue);
+      /* 預設深色 */
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+      animation: slow-blink 2s infinite ease-in-out;
+      display: none;
+      /* 預設隱藏，只在手機版顯示 */
+      white-space: nowrap;
+      /* 防止文字換行 */
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 15px;
+      }
+
+      .main-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--dark-blue);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        padding: 0;
+      }
+
+      .main-nav.is-open {
+        transform: translateX(0);
+      }
+
+      .main-nav a {
+        color: var(--white);
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      .main-nav a:hover,
+      .main-nav a.active {
+        color: var(--accent-gold);
+      }
+
+      .main-nav a::after {
+        background-color: var(--accent-gold);
+      }
+
+      .hamburger-wrapper {
+        position: relative;
+        /* 為了定位裡面的 label */
+        width: 30px;
+        /* 和 hamburger-menu 的寬度一致 */
+        height: 24px;
+        /* 和 hamburger-menu 的高度一致 */
+      }
+
+      .hamburger-label {
+        display: block;
+        /* 在手機版顯示 */
+      }
+
+      .hamburger-menu {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .hamburger-menu span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-blue);
+        position: absolute;
+        left: 0;
+        transition: all 0.3s;
+        border-radius: 2px;
+      }
+
+      .hamburger-menu span:nth-child(1) {
+        top: 0;
+      }
+
+      .hamburger-menu span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .hamburger-menu span:nth-child(3) {
+        bottom: 0;
+      }
+
+      .hamburger-menu.is-active span {
+        background-color: var(--white);
+      }
+
+      .hamburger-menu.is-active span:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .hamburger-menu.is-active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger-menu.is-active span:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+      }
+
+      .hamburger-menu.is-active+.hamburger-label,
+      .hamburger-wrapper .hamburger-label.is-active {
+        display: none;
+      }
+
+      .container {
+        padding: 0 35px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .cta-button,
+      .back-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+        padding: 12px 20px;
+        margin-bottom: 40px;
+      }
+
+      .features-grid {
+        gap: 50px;
+      }
+
+      .feature-item {
+        padding: 20px 15px;
+      }
+
+      .feature-item .icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+      }
+
+      .feature-item h3 {
+        font-size: 1.2rem;
+      }
+
+      .feature-item p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header class="site-header">
-        <div class="header-container">
-            <div class="logo-area">
-                <div class="logo">
-                    <a href="index.html">創新國際管理顧問</a>
-                </div>
-                <h1 class="header-h1">食安領航，<br>從工廠登記做起</h1>
-            </div>
-            <nav class="main-nav">
-                <a href="index.html#home" class="nav-link">首頁</a>
-                <a href="index.html#features" class="nav-link">核心服務</a>
-                <a href="index.html#audit" class="nav-link">查核重點</a>
-                <a href="index.html#guide" class="nav-link">廠房規劃</a>
-                <a href="index.html#process" class="nav-link">申請流程</a>
-                <a href="#" class="nav-link active">仲介合作專區</a>
-                <a href="http://www.innovation-intl.com.tw/" target="_blank" class="cta-button"
-                    style="text-align: center; line-height: 1.3; padding: 8px 20px;">
-                    想看更多<br>官網
-                </a>
-            </nav>
-            <div class="hamburger-wrapper">
-                <span class="hamburger-label">點我</span>
-                <button class="hamburger-menu" aria-label="Toggle Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <div class="logo">
+          <a href="index.html">創新國際管理顧問</a>
         </div>
-    </header>
-
-    <main>
-        <section id="broker-cooperation" class="container">
-            <h2 class="section-title dark-theme">產業一條龍 合作創三贏</h2>
-            <p
-                style="max-width: 800px; margin: -30px auto 50px; color: var(--text-color); font-size: 1.1rem; line-height: 1.8; text-align: center;">
-                我們位於產業鏈的關鍵樞紐，串聯「工廠仲介」與「外勞仲介」，<br>
-                透過專業分工，解決客戶痛點，讓您的業務推動更順利！
-            </p>
-            <div class="features-grid">
-                <div class="feature-item" style="transition-delay: 0.1s;">
-                    <div class="icon">🏢</div>
-                    <h3>致：工廠與土地仲介夥伴</h3>
-                    <p style="text-align:center; color: var(--primary-blue); margin-bottom: 20px;">您負責成交，我們負責合法化</p>
-                    <ul class="broker-list">
-                        <li><span>✅</span><strong>事前評估：</strong>協助評估土地/廠房是否可合法登記，避免成交後糾紛。</li>
-                        <li><span>✅</span><strong>增加賣點：</strong>提供「成功登記案例」的專業背書，讓您的物件更具競爭力。</li>
-                        <li><span>✅</span><strong>法規諮詢：</strong>隨時解決客戶對工廠登記的疑難雜症。</li>
-                    </ul>
-                </div>
-                <div class="feature-item" style="transition-delay: 0.2s;">
-                    <div class="icon">👥</div>
-                    <h3>致：外勞仲介夥伴</h3>
-                    <p style="text-align:center; color: var(--primary-blue); margin-bottom: 20px;">證照下得來，移工才進得去</p>
-                    <ul class="broker-list">
-                        <li><span>✅</span><strong>快速取證：</strong>加速辦理工廠登記證與相關函文，縮短您的等待期。</li>
-                        <li><span>✅</span><strong>案件解套：</strong>協助解決卡關的工廠資格問題，讓您能順利申請外勞配額。</li>
-                        <li><span>✅</span><strong>互利導客：</strong>當我們的客戶有缺工需求時，優先轉介給合作的仲介夥伴。</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 60px;">
-                <a href="#" class="cta-button js-open-coop-modal">
-                    <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z" />
-                    </svg>
-                    洽談合作
-                </a>
-                <a href="index.html" class="cta-button back-button"
-                    style="margin-top: 20px; border:none; font-size:1.2rem; display: inline-flex; margin-left: 20px;">回首頁</a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-container">
-            &copy; 2025 創新國際管理顧問有限公司 All Rights Reserved.
-        </div>
-    </footer>
-
-    <div class="line-modal-overlay" id="line-modal-coop">
-        <div class="line-modal-content">
-            <a href="https://line.me/ti/p/TNuzvB3g6m" target="_blank"
-                style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-                <img src="立即洽談合作01.png" alt="立即洽談合作"
-                    style="width: auto; max-width: 400px; max-height: 80vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer; transition: transform 0.2s;">
-            </a>
-            <button class="cta-button back-btn close-line-modal-btn"
-                style="margin-top: 5px; padding: 10px 30px; font-size: 0.9rem;">回上一頁</button>
-        </div>
+        <h1 class="header-h1">食安領航，<br>從工廠登記做起</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html#home" class="nav-link">首頁</a>
+        <a href="index.html#features" class="nav-link">核心服務</a>
+        <a href="index.html#audit" class="nav-link">查核重點</a>
+        <a href="index.html#guide" class="nav-link">廠房規劃</a>
+        <a href="index.html#process" class="nav-link">申請流程</a>
+        <a href="#" class="nav-link active">仲介合作專區</a>
+        <a href="http://www.innovation-intl.com.tw/" target="_blank" class="cta-button"
+          style="text-align: center; line-height: 1.3; padding: 8px 20px;">
+          想看更多<br>官網
+        </a>
+      </nav>
+      <div class="hamburger-wrapper">
+        <span class="hamburger-label">點我</span>
+        <button class="hamburger-menu" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const hamburger = document.querySelector('.hamburger-menu');
-            const nav = document.querySelector('.main-nav');
+  <main>
+    <section id="broker-cooperation" class="container">
+      <h2 class="section-title dark-theme">產業一條龍 合作創三贏</h2>
+      <p
+        style="max-width: 800px; margin: -30px auto 50px; color: var(--text-color); font-size: 1.1rem; line-height: 1.8; text-align: center;">
+        我們位於產業鏈的關鍵樞紐，串聯「工廠仲介」與「外勞仲介」，<br>
+        透過專業分工，解決客戶痛點，讓您的業務推動更順利！
+      </p>
+      <div class="features-grid">
+        <div class="feature-item" style="transition-delay: 0.1s;">
+          <div class="icon">🏢</div>
+          <h3>致：工廠與土地仲介夥伴</h3>
+          <p style="text-align:center; color: var(--primary-blue); margin-bottom: 20px;">您負責成交，我們負責合法化</p>
+          <ul class="broker-list">
+            <li><span>✅</span><strong>事前評估：</strong>協助評估土地/廠房是否可合法登記，避免成交後糾紛。</li>
+            <li><span>✅</span><strong>增加賣點：</strong>提供「成功登記案例」的專業背書，讓您的物件更具競爭力。</li>
+            <li><span>✅</span><strong>法規諮詢：</strong>隨時解決客戶對工廠登記的疑難雜症。</li>
+          </ul>
+        </div>
+        <div class="feature-item" style="transition-delay: 0.2s;">
+          <div class="icon">👥</div>
+          <h3>致：外勞仲介夥伴</h3>
+          <p style="text-align:center; color: var(--primary-blue); margin-bottom: 20px;">證照下得來，移工才進得去</p>
+          <ul class="broker-list">
+            <li><span>✅</span><strong>快速取證：</strong>加速辦理工廠登記證與相關函文，縮短您的等待期。</li>
+            <li><span>✅</span><strong>案件解套：</strong>協助解決卡關的工廠資格問題，讓您能順利申請外勞配額。</li>
+            <li><span>✅</span><strong>互利導客：</strong>當我們的客戶有缺工需求時，優先轉介給合作的仲介夥伴。</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 60px;">
+        <a href="#" class="cta-button js-open-coop-modal">
+          <svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M24 10.304c0-5.231-5.37-9.504-12-9.504-6.63 0-12 4.273-12 9.504 0 4.684 4.255 8.604 10 9.339.388.084.917.257 1.047.584.12.3-.081.777-.156 1.082l-.463 1.919c-.074.303-.343 1.185 1.488.646 1.83-.539 9.874-5.813 11.666-8.243.682-.924.418-1.745.418-5.327z" />
+          </svg>
+          洽談合作
+        </a>
+        <a href="index.html" class="cta-button back-button"
+          style="margin-top: 20px; border:none; font-size:1.2rem; display: inline-flex; margin-left: 20px;">回首頁</a>
+      </div>
+    </section>
+  </main>
 
-            // --- Hamburger Menu ---
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('is-active');
-                nav.classList.toggle('is-open');
-                const hamburgerLabel = document.querySelector('.hamburger-label');
-                if (hamburgerLabel) {
-                    if (nav.classList.contains('is-open')) {
-                        hamburgerLabel.style.display = 'none';
-                    } else {
-                        if (window.innerWidth <= 768) {
-                            hamburgerLabel.style.display = 'block';
-                        }
-                    }
-                }
-            });
+  <footer class="site-footer">
+    <div class="footer-container">
+      &copy; 2025 創新國際管理顧問有限公司 All Rights Reserved.
+    </div>
+  </footer>
 
-            // --- LINE Modal Logic ---
-            const coopModal = document.getElementById('line-modal-coop');
-            const openCoopBtns = document.querySelectorAll('.js-open-coop-modal');
-            const closeButtons = document.querySelectorAll('.close-line-modal-btn');
+  <div class="line-modal-overlay" id="line-modal-coop">
+    <div class="line-modal-content">
+      <a href="https://line.me/ti/p/TNuzvB3g6m" target="_blank"
+        style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+        <img src="立即洽談合作01.png" alt="立即洽談合作"
+          style="width: auto; max-width: 400px; max-height: 80vh; display: block; border-radius: 10px; margin-bottom: 5px; cursor: pointer; transition: transform 0.2s;">
+      </a>
+      <button class="cta-button back-btn close-line-modal-btn"
+        style="margin-top: 5px; padding: 10px 30px; font-size: 0.9rem;">回上一頁</button>
+    </div>
+  </div>
 
-            function openLineModal(modal) {
-                if (!modal) return;
-                modal.classList.add('is-visible');
-                document.body.style.overflow = 'hidden';
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburger = document.querySelector('.hamburger-menu');
+      const nav = document.querySelector('.main-nav');
+
+      // --- Hamburger Menu ---
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('is-active');
+        nav.classList.toggle('is-open');
+        const hamburgerLabel = document.querySelector('.hamburger-label');
+        if (hamburgerLabel) {
+          if (nav.classList.contains('is-open')) {
+            hamburgerLabel.style.display = 'none';
+          } else {
+            if (window.innerWidth <= 768) {
+              hamburgerLabel.style.display = 'block';
             }
+          }
+        }
+      });
 
-            function closeLineModal(modal) {
-                if (!modal) return;
-                modal.classList.remove('is-visible');
-                document.body.style.overflow = '';
-            }
+      // --- LINE Modal Logic ---
+      const coopModal = document.getElementById('line-modal-coop');
+      const openCoopBtns = document.querySelectorAll('.js-open-coop-modal');
+      const closeButtons = document.querySelectorAll('.close-line-modal-btn');
 
-            openCoopBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openLineModal(coopModal);
-                });
-            });
+      function openLineModal(modal) {
+        if (!modal) return;
+        modal.classList.add('is-visible');
+        document.body.style.overflow = 'hidden';
+      }
 
-            closeButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const modal = btn.closest('.line-modal-overlay');
-                    closeLineModal(modal);
-                });
-            });
+      function closeLineModal(modal) {
+        if (!modal) return;
+        modal.classList.remove('is-visible');
+        document.body.style.overflow = '';
+      }
 
-            if (coopModal) {
-                coopModal.addEventListener('click', (e) => {
-                    if (e.target === coopModal) {
-                        closeLineModal(coopModal);
-                    }
-                });
-            }
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeLineModal(coopModal);
-                }
-            });
+      openCoopBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openLineModal(coopModal);
         });
-    </script>
+      });
+
+      closeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const modal = btn.closest('.line-modal-overlay');
+          closeLineModal(modal);
+        });
+      });
+
+      if (coopModal) {
+        coopModal.addEventListener('click', (e) => {
+          if (e.target === coopModal) {
+            closeLineModal(coopModal);
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeLineModal(coopModal);
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
